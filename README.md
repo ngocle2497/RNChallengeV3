@@ -2,4 +2,4 @@
 
 ## Card Rotation
 
-<video src="./preview/card-rotation.mov" ></video>
+<image src="./preview/card-rotation.gif"/>
