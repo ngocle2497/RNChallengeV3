@@ -11,10 +11,16 @@ export const Home = () => {
   const handleCardRotatePress = () => {
     navigate(APP_SCREEN.CARD_ROTATE);
   };
+
+  const handleSpaceButtonPress = () => {
+    navigate(APP_SCREEN.SPACE_BUTTON);
+  };
+
   // render
   return (
     <ScrollView>
       <ItemFunction text="Card Rotate" onPress={handleCardRotatePress} />
+      <ItemFunction text="Space Button" onPress={handleSpaceButtonPress} />
     </ScrollView>
   );
 };

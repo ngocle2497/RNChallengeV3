@@ -10,6 +10,7 @@ import { APP_SCREEN, RootStackParamList } from './screen-type';
 
 import { CardRotate } from '../features/card-rotate';
 import { Home } from '../features/home';
+import { SpaceButton } from '../features/space-button';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -35,6 +36,11 @@ export const RootNavigation = () => {
           options={{ title: 'Card Rotate' }}
           name={APP_SCREEN.CARD_ROTATE}
           component={CardRotate}
+        />
+        <RootStack.Screen
+          options={{ title: 'Space Button' }}
+          name={APP_SCREEN.SPACE_BUTTON}
+          component={SpaceButton}
         />
       </RootStack.Navigator>
     </NavigationContainer>
