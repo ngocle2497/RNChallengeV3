@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import FastImage from 'react-native-fast-image';
@@ -17,7 +17,6 @@ import { styles } from './styles';
 export const SpaceButton = () => {
   // state
   const [going, setGoing] = useState<boolean>(false);
-
   const scale = useSharedValue(1);
 
   // func
@@ -29,11 +28,15 @@ export const SpaceButton = () => {
     transform: [{ scale: scale.value }],
   }));
 
+  const renderItem = useCallback((_: any, index: number) => {
+    return <LightRay index={index} total={30} key={index} />;
+  }, []);
+
   // effect
   useEffect(() => {
     if (going) {
       scale.value = withRepeat(
-        withTiming(5, { duration: 100 * 1000, easing: Easing.linear }),
+        withTiming(3, { duration: 200 * 1000, easing: Easing.linear }),
         -1,
         true,
       );
@@ -54,13 +57,7 @@ export const SpaceButton = () => {
         />
       </Animated.View>
       <View style={[styles.background]}>
-        {going
-          ? Array(30)
-              .fill(0)
-              .map((_, index) => (
-                <LightRay index={index} total={30} key={index} />
-              ))
-          : null}
+        {going ? Array(50).fill(0).map(renderItem) : null}
         <TouchableWithoutFeedback onPress={handleToggleGoing}>
           <View style={[styles.button]}>
             <Text style={{ color: '#ffffff' }}>{going ? 'Stop' : 'Start'}</Text>

@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { View } from 'react-native';
 
+import isEqual from 'react-fast-compare';
 import Animated, {
   interpolate,
   useAnimatedStyle,
@@ -15,54 +16,82 @@ import { DEFAULT_WIDTH_LIGHT_RAY, WIDTH_CANVAS } from '../constant';
 import { styles } from '../styles';
 import { LightRayProps } from '../type';
 
-export const LightRay = ({ index, total }: LightRayProps) => {
+export const LightRay = memo(({ index, total }: LightRayProps) => {
   // state
   const progressRight = useSharedValue(0);
-  const widthRight = useDerivedValue(() =>
-    interpolate(
-      progressRight.value,
-      [0, 1],
-      [DEFAULT_WIDTH_LIGHT_RAY, WIDTH_CANVAS / 2],
-    ),
-  );
-  const xRight = useDerivedValue(() =>
-    interpolate(progressRight.value, [0, 1], [0, WIDTH_CANVAS]),
-  );
   const progressLeft = useSharedValue(0);
-  const widthLeft = useDerivedValue(() =>
-    interpolate(
-      progressLeft.value,
-      [0, 1],
-      [DEFAULT_WIDTH_LIGHT_RAY, WIDTH_CANVAS / 2],
-    ),
+  const middleWidthLeft = useSharedValue(Math.random() * (WIDTH_CANVAS / 4));
+  const middleWidthRight = useSharedValue(Math.random() * (WIDTH_CANVAS / 4));
+  const middleXRight = useSharedValue(Math.random() * (WIDTH_CANVAS / 2));
+  const middleXLeft = useSharedValue(Math.random() * (WIDTH_CANVAS / 2));
+  const widthRight = useDerivedValue(
+    () =>
+      interpolate(
+        progressRight.value,
+        [0, 0.5, 1],
+        [DEFAULT_WIDTH_LIGHT_RAY, middleWidthRight.value, WIDTH_CANVAS / 2],
+      ),
+    [],
   );
-  const xLeft = useDerivedValue(() =>
-    interpolate(progressLeft.value, [0, 1], [0, WIDTH_CANVAS]),
+
+  const xRight = useDerivedValue(
+    () =>
+      interpolate(
+        progressRight.value,
+        [0, 0.5, 1],
+        [0, middleXRight.value, WIDTH_CANVAS],
+      ),
+    [],
   );
 
-  //   useSharedValueEffect(() => {
-  //     widthRight.current = mix(
-  //       progressRight.value,
-  //       DEFAULT_WIDTH_LIGHT_RAY,
-  //       WIDTH_CANVAS / 2,
-  //     );
-  //     xRight.current = mix(progressRight.value, 0, WIDTH_CANVAS);
-  //   }, progressRight);
+  const widthLeft = useDerivedValue(
+    () =>
+      interpolate(
+        progressLeft.value,
+        [0, 0.5, 1],
+        [DEFAULT_WIDTH_LIGHT_RAY, middleWidthLeft.value, WIDTH_CANVAS / 2],
+      ),
+    [],
+  );
 
-  //   useSharedValueEffect(() => {
-  //     widthLeft.current = mix(
-  //       progressRight.value,
-  //       DEFAULT_WIDTH_LIGHT_RAY,
-  //       WIDTH_CANVAS / 2,
-  //     );
-  //     xLeft.current = mix(progressLeft.value, 0, WIDTH_CANVAS);
-  //   }, progressLeft);
+  const xLeft = useDerivedValue(
+    () =>
+      interpolate(
+        progressLeft.value,
+        [0, 0.5, 1],
+        [0, middleXLeft.value, WIDTH_CANVAS],
+      ),
+    [],
+  );
 
+  const leftStyle = useAnimatedStyle(
+    () => ({
+      width: widthLeft.value,
+      height: 2,
+      borderRadius: 2,
+      backgroundColor: '#FFFFFF',
+      transform: [{ translateX: xLeft.value }],
+    }),
+    [],
+  );
+  const rightStyle = useAnimatedStyle(
+    () => ({
+      width: widthRight.value,
+      height: 2,
+      borderRadius: 2,
+      backgroundColor: '#FFFFFF',
+      transform: [{ translateX: xRight.value }],
+    }),
+    [],
+  );
   useEffect(() => {
     progressRight.value = withDelay(
       Math.random() * 700,
       withRepeat(
-        withTiming(1, { duration: 500 + Math.random() * 1000 }),
+        withTiming(1, { duration: 500 + Math.random() * 1000 }, () => {
+          middleWidthRight.value = Math.random() * (WIDTH_CANVAS / 4);
+          middleXRight.value = Math.random() * (WIDTH_CANVAS / 2);
+        }),
         -1,
         false,
       ),
@@ -70,28 +99,15 @@ export const LightRay = ({ index, total }: LightRayProps) => {
     progressLeft.value = withDelay(
       Math.random() * 700,
       withRepeat(
-        withTiming(1, { duration: 500 + Math.random() * 1000 }),
+        withTiming(1, { duration: 500 + Math.random() * 1000 }, () => {
+          middleWidthLeft.value = Math.random() * (WIDTH_CANVAS / 4);
+          middleXLeft.value = Math.random() * (WIDTH_CANVAS / 2);
+        }),
         -1,
         false,
       ),
     );
   }, []);
-
-  const leftStyle = useAnimatedStyle(() => ({
-    width: widthLeft.value,
-    height: 3,
-    borderRadius: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ translateX: xLeft.value }],
-  }));
-  const rightStyle = useAnimatedStyle(() => ({
-    width: widthRight.value,
-    height: 3,
-    borderRadius: 2,
-    backgroundColor: '#FFFFFF',
-    transform: [{ translateX: xRight.value }],
-  }));
-
   // render
   return (
     <View
@@ -107,4 +123,4 @@ export const LightRay = ({ index, total }: LightRayProps) => {
       </Animated.View>
     </View>
   );
-};
+}, isEqual);
