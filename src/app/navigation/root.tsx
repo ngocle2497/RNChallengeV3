@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './navigation-service';
 import { APP_SCREEN, RootStackParamList } from './screen-type';
 
+import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
 import { Home } from '../features/home';
 import { SpaceButton } from '../features/space-button';
@@ -41,6 +42,11 @@ export const RootNavigation = () => {
           options={{ title: 'Space Button' }}
           name={APP_SCREEN.SPACE_BUTTON}
           component={SpaceButton}
+        />
+        <RootStack.Screen
+          options={{ title: 'Card Gradient' }}
+          name={APP_SCREEN.CARD_GRADIENT}
+          component={CardGradient}
         />
       </RootStack.Navigator>
     </NavigationContainer>

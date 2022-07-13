@@ -16,11 +16,16 @@ export const Home = () => {
     navigate(APP_SCREEN.SPACE_BUTTON);
   };
 
+  const handleCardGradientPress = () => {
+    navigate(APP_SCREEN.CARD_GRADIENT);
+  };
+
   // render
   return (
     <ScrollView>
       <ItemFunction text="Card Rotate" onPress={handleCardRotatePress} />
       <ItemFunction text="Space Button" onPress={handleSpaceButtonPress} />
+      <ItemFunction text="Card Gradient" onPress={handleCardGradientPress} />
     </ScrollView>
   );
 };
