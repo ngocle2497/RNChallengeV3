@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
+import Animated from 'react-native-reanimated';
+
 import { ItemBox } from './components/item-box';
 import { randomBox } from './constant';
 import { styles } from './styles';
@@ -25,7 +27,7 @@ export const MountedElement = () => {
 
   // render
   return (
-    <View style={[styles.root]}>
+    <Animated.View style={[styles.root]}>
       <ScrollView>
         <View style={[styles.rowButton]}>
           <TouchableOpacity onPress={handlePop}>
@@ -41,6 +43,6 @@ export const MountedElement = () => {
         </View>
         <View style={[styles.rowChildren]}>{data.map(renderBox)}</View>
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 };
