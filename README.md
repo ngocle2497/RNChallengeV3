@@ -15,3 +15,7 @@
 ## Mounted Element
 
 <image src="./preview/mounted-element.gif"/>
+
+## Sensor Wallpaper
+
+<image src="./preview/sensor_wallpaper.gif"/>
