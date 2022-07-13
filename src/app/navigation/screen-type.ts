@@ -4,6 +4,7 @@ export enum APP_SCREEN {
   SPACE_BUTTON = 'SPACE_BUTTON',
   CARD_GRADIENT = 'CARD_GRADIENT',
   MOUNTED_ELEMENT = 'MOUNTED_ELEMENT',
+  SENSOR_WALLPAPER = 'SENSOR_WALLPAPER',
 }
 
 export type RootStackParamList = {
@@ -12,4 +13,5 @@ export type RootStackParamList = {
   [APP_SCREEN.CARD_GRADIENT]: undefined;
   [APP_SCREEN.SPACE_BUTTON]: undefined;
   [APP_SCREEN.MOUNTED_ELEMENT]: undefined;
+  [APP_SCREEN.SENSOR_WALLPAPER]: undefined;
 };

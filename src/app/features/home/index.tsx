@@ -24,6 +24,10 @@ export const Home = () => {
     navigate(APP_SCREEN.MOUNTED_ELEMENT);
   };
 
+  const handleSensorWallpaperPress = () => {
+    navigate(APP_SCREEN.SENSOR_WALLPAPER);
+  };
+
   // render
   return (
     <ScrollView>
@@ -33,6 +37,10 @@ export const Home = () => {
       <ItemFunction
         text="Mounted Element"
         onPress={handleMountedElementPress}
+      />
+      <ItemFunction
+        text="Sensor  Wallpaper"
+        onPress={handleSensorWallpaperPress}
       />
     </ScrollView>
   );

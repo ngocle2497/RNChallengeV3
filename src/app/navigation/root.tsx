@@ -12,6 +12,7 @@ import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
 import { Home } from '../features/home';
 import { MountedElement } from '../features/mounted-element';
+import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SpaceButton } from '../features/space-button';
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -53,6 +54,11 @@ export const RootNavigation = () => {
           options={{ title: 'Mounted Element' }}
           name={APP_SCREEN.MOUNTED_ELEMENT}
           component={MountedElement}
+        />
+        <RootStack.Screen
+          options={{ title: 'Sensor  Wallpaper' }}
+          name={APP_SCREEN.SENSOR_WALLPAPER}
+          component={SensorWallpaper}
         />
       </RootStack.Navigator>
     </NavigationContainer>
