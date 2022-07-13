@@ -20,12 +20,20 @@ export const Home = () => {
     navigate(APP_SCREEN.CARD_GRADIENT);
   };
 
+  const handleMountedElementPress = () => {
+    navigate(APP_SCREEN.MOUNTED_ELEMENT);
+  };
+
   // render
   return (
     <ScrollView>
       <ItemFunction text="Card Rotate" onPress={handleCardRotatePress} />
       <ItemFunction text="Space Button" onPress={handleSpaceButtonPress} />
       <ItemFunction text="Card Gradient" onPress={handleCardGradientPress} />
+      <ItemFunction
+        text="Mounted Element"
+        onPress={handleMountedElementPress}
+      />
     </ScrollView>
   );
 };

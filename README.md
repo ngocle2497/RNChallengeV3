@@ -11,3 +11,7 @@
 ## Card Gradient
 
 <image src="./preview/card-gradient.gif"/>
+
+## Mounted Element
+
+<image src="./preview/mounted-element.gif"/>

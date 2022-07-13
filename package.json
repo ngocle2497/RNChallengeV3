@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@faker-js/faker": "^7.3.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
