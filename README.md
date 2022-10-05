@@ -19,3 +19,7 @@
 ## Sensor Wallpaper
 
 <image src="./preview/sensor_wallpaper.gif"/>
+
+## Swipe Sort
+
+<image src="./preview/swipe_sort.gif"/>
