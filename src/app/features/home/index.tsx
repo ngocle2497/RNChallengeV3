@@ -27,6 +27,9 @@ export const Home = () => {
   const handleSensorWallpaperPress = () => {
     navigate(APP_SCREEN.SENSOR_WALLPAPER);
   };
+  const handleSwipeSortPress = () => {
+    navigate(APP_SCREEN.SWIPE_SORT);
+  };
 
   // render
   return (
@@ -39,9 +42,10 @@ export const Home = () => {
         onPress={handleMountedElementPress}
       />
       <ItemFunction
-        text="Sensor  Wallpaper"
+        text="Sensor Wallpaper"
         onPress={handleSensorWallpaperPress}
       />
+      <ItemFunction text="Swipe Sort" onPress={handleSwipeSortPress} />
     </ScrollView>
   );
 };

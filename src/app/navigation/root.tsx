@@ -14,6 +14,7 @@ import { Home } from '../features/home';
 import { MountedElement } from '../features/mounted-element';
 import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SpaceButton } from '../features/space-button';
+import { SwipeSort } from '../features/swipe-sort';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -56,9 +57,14 @@ export const RootNavigation = () => {
           component={MountedElement}
         />
         <RootStack.Screen
-          options={{ title: 'Sensor  Wallpaper' }}
+          options={{ title: 'Sensor Wallpaper' }}
           name={APP_SCREEN.SENSOR_WALLPAPER}
           component={SensorWallpaper}
+        />
+        <RootStack.Screen
+          options={{ title: 'Swipe Sort' }}
+          name={APP_SCREEN.SWIPE_SORT}
+          component={SwipeSort}
         />
       </RootStack.Navigator>
     </NavigationContainer>
