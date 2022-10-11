@@ -13,6 +13,7 @@ import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
 import { Home } from '../features/home';
 import { MountedElement } from '../features/mounted-element';
+import { RefreshIsland } from '../features/refresh-island';
 import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SpaceButton } from '../features/space-button';
 import { SwipeSort } from '../features/swipe-sort';
@@ -71,6 +72,11 @@ export const RootNavigation = () => {
           options={{ title: 'Card 3D' }}
           name={APP_SCREEN.CARD_3D}
           component={Card3D}
+        />
+        <RootStack.Screen
+          options={{ title: 'Refresh Island' }}
+          name={APP_SCREEN.REFRESH_ISLAND}
+          component={RefreshIsland}
         />
       </RootStack.Navigator>
     </NavigationContainer>
