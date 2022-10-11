@@ -24,7 +24,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
-    "@shopify/react-native-skia": "^0.1.133",
+    "@shopify/react-native-skia": "^0.1.155",
     "react": "17.0.2",
     "react-fast-compare": "^3.2.0",
     "react-native": "0.68.2",

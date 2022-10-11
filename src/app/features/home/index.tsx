@@ -45,6 +45,10 @@ export const Home = () => {
         text="Card 3D"
         onPress={handleNavigate(APP_SCREEN.CARD_3D)}
       />
+      <ItemFunction
+        text="Refresh Island"
+        onPress={handleNavigate(APP_SCREEN.REFRESH_ISLAND)}
+      />
     </ScrollView>
   );
 };

@@ -1795,13 +1795,13 @@
     color "^3.1.3"
     warn-once "^0.1.0"
 
-"@shopify/react-native-skia@^0.1.133":
-  version "0.1.133"
-  resolved "https://registry.yarnpkg.com/@shopify/react-native-skia/-/react-native-skia-0.1.133.tgz#9ed8e2fabdabdbd49ecb9ba2bf403a81bfec906d"
-  integrity sha512-H6s89wEkIWCQHfe3F8qjoEDsVErmkldWlsvLmg+YI60VcllEB8E00s8SUb+h4H//1oSvG/8T+YHLnJJ3qdc3sQ==
+"@shopify/react-native-skia@^0.1.155":
+  version "0.1.155"
+  resolved "https://registry.yarnpkg.com/@shopify/react-native-skia/-/react-native-skia-0.1.155.tgz#44bc58a39939fd6f6bf83481f417fb8494b2e99e"
+  integrity sha512-tRJy1gXrRCjPgG4CLvyxEOSHDU5IHsBS7TGsdyP/6cz9gcb1QrTejUi1+dfixjMcsRof4wYpprlIvnfwjNLWpg==
   dependencies:
-    canvaskit-wasm "^0.34.0"
-    react-reconciler "^0.26.2"
+    canvaskit-wasm "0.36.1"
+    react-reconciler "0.26.2"
 
 "@sideway/address@^4.1.3":
   version "4.1.4"
@@ -2872,10 +2872,10 @@ caniuse-lite@^1.0.30001358:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001359.tgz#a1c1cbe1c2da9e689638813618b4219acbd4925e"
   integrity sha512-Xln/BAsPzEuiVLgJ2/45IaqD9jShtk3Y33anKb4+yLwQzws3+v6odKfpgES/cDEaZMLzSChpIGdbOYtH9MyuHw==
 
-canvaskit-wasm@^0.34.0:
-  version "0.34.1"
-  resolved "https://registry.yarnpkg.com/canvaskit-wasm/-/canvaskit-wasm-0.34.1.tgz#dc8a4c0378e92d9541be8b9dd1c4abe69354cf4d"
-  integrity sha512-8qdrp0RO8wRUGTpn2JyfbBxsc5auSSTcHu4p2aazbmL7n15PzSpuZR5TKIg8xuVqqezclzLY2x/HEDSAuxmIxQ==
+canvaskit-wasm@0.36.1:
+  version "0.36.1"
+  resolved "https://registry.yarnpkg.com/canvaskit-wasm/-/canvaskit-wasm-0.36.1.tgz#341df38ce7894a925064beaf9eeacbf7699c6633"
+  integrity sha512-6IHlBBc9zDQBTHiGuz4Rf0j/P/ulW24q/yW+QY517e7jwQoM0nJ1+L3h4wUpfC4eQrcpVPQY8ZFbqMbUCzDxTw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -7314,7 +7314,7 @@ react-native@0.68.2:
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
 
-react-reconciler@^0.26.2:
+react-reconciler@0.26.2:
   version "0.26.2"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.26.2.tgz#bbad0e2d1309423f76cf3c3309ac6c96e05e9d91"
   integrity sha512-nK6kgY28HwrMNwDnMui3dvm3rCFjZrcGiuwLc5COUipBK5hWHLOxMJhSnSomirqWwjPBJKV1QcbkI0VJr7Gl1Q==

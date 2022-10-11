@@ -27,3 +27,7 @@
 ## Card 3D
 
 <image src="./preview/card_3d.gif"/>
+
+## Refresh IsLand
+
+<image src="./preview/refresh_island.gif"/>
