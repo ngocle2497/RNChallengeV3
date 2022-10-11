@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { navigationRef } from './navigation-service';
 import { APP_SCREEN, RootStackParamList } from './screen-type';
 
+import { Card3D } from '../features/card-3d';
 import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
 import { Home } from '../features/home';
@@ -65,6 +66,11 @@ export const RootNavigation = () => {
           options={{ title: 'Swipe Sort' }}
           name={APP_SCREEN.SWIPE_SORT}
           component={SwipeSort}
+        />
+        <RootStack.Screen
+          options={{ title: 'Card 3D' }}
+          name={APP_SCREEN.CARD_3D}
+          component={Card3D}
         />
       </RootStack.Navigator>
     </NavigationContainer>
