@@ -35,3 +35,7 @@
 ## Color Filter
 
 <image src="./preview/color_filter.gif"/>
+
+## Scratch ticket
+
+<image src="./preview/scratch_tickets.gif"/>

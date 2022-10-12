@@ -15,6 +15,7 @@ import { ColorFilter } from '../features/color-filter';
 import { Home } from '../features/home';
 import { MountedElement } from '../features/mounted-element';
 import { RefreshIsland } from '../features/refresh-island';
+import { ScratchTicket } from '../features/scratch-tickets';
 import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SpaceButton } from '../features/space-button';
 import { SwipeSort } from '../features/swipe-sort';
@@ -83,6 +84,11 @@ export const RootNavigation = () => {
           options={{ title: 'Color Filter' }}
           name={APP_SCREEN.COLOR_FILTER}
           component={ColorFilter}
+        />
+        <RootStack.Screen
+          options={{ title: 'Scratch Ticket' }}
+          name={APP_SCREEN.SCRATCH_TICKET}
+          component={ScratchTicket}
         />
       </RootStack.Navigator>
     </NavigationContainer>
