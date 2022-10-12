@@ -78,8 +78,23 @@ export const A2_OUTPUT_RANGE = [0, 0, 0, 0, 1, 0, 0, 0, 0];
 export const A3_OUTPUT_RANGE = [0, 1.7, 0, 0, 0, 0, 0, 0, 0];
 export const A4_OUTPUT_RANGE = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 export const A5_OUTPUT_RANGE = [0, 0, 0, 0.2, 0, 0, 0, 0, 0];
-const { width } = Dimensions.get('window');
 
-export const SIZE_LIST = 100;
+const { width } = Dimensions.get('window');
+export const FILTER_ARRAY = [
+  'No Filter',
+  'Purple',
+  'Yellow',
+  'Cyan',
+  'Black and white',
+  'Old times',
+  'Cold life',
+  'Sepium',
+  'Milk',
+];
+export const SIZE_ITEM = 100;
 export const SPACER_LIST = 10;
-export const PADDING_HORIZONTAL = (width - SIZE_LIST) / 2;
+export const PADDING_HORIZONTAL = (width - SIZE_ITEM) / 2;
+export const INPUT_RANGE = Array(FILTER_ARRAY.length)
+  .fill(0)
+  .map((_, i) => i * (SPACER_LIST + SIZE_ITEM));
+console.log({ INPUT_RANGE });

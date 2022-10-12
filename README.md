@@ -31,3 +31,7 @@
 ## Refresh IsLand
 
 <image src="./preview/refresh_island.gif"/>
+
+## Color Filter
+
+<image src="./preview/color_filter.gif"/>
