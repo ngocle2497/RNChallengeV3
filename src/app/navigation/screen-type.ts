@@ -9,6 +9,7 @@ export enum APP_SCREEN {
   CARD_3D = 'CARD_3D',
   REFRESH_ISLAND = 'REFRESH_ISLAND',
   COLOR_FILTER = 'COLOR_FILTER',
+  SCRATCH_TICKET = 'SCRATCH_TICKET',
 }
 
 export type RootStackParamList = {
@@ -22,4 +23,5 @@ export type RootStackParamList = {
   [APP_SCREEN.CARD_3D]: undefined;
   [APP_SCREEN.REFRESH_ISLAND]: undefined;
   [APP_SCREEN.COLOR_FILTER]: undefined;
+  [APP_SCREEN.SCRATCH_TICKET]: undefined;
 };

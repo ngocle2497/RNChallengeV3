@@ -53,6 +53,10 @@ export const Home = () => {
         text="Color Filter"
         onPress={handleNavigate(APP_SCREEN.COLOR_FILTER)}
       />
+      <ItemFunction
+        text="Scratch Ticket"
+        onPress={handleNavigate(APP_SCREEN.SCRATCH_TICKET)}
+      />
     </ScrollView>
   );
 };
