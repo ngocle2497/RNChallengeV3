@@ -11,6 +11,7 @@ import { APP_SCREEN, RootStackParamList } from './screen-type';
 import { Card3D } from '../features/card-3d';
 import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
+import { ColorFilter } from '../features/color-filter';
 import { Home } from '../features/home';
 import { MountedElement } from '../features/mounted-element';
 import { RefreshIsland } from '../features/refresh-island';
@@ -77,6 +78,11 @@ export const RootNavigation = () => {
           options={{ title: 'Refresh Island' }}
           name={APP_SCREEN.REFRESH_ISLAND}
           component={RefreshIsland}
+        />
+        <RootStack.Screen
+          options={{ title: 'Color Filter' }}
+          name={APP_SCREEN.COLOR_FILTER}
+          component={ColorFilter}
         />
       </RootStack.Navigator>
     </NavigationContainer>

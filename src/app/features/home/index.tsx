@@ -49,6 +49,10 @@ export const Home = () => {
         text="Refresh Island"
         onPress={handleNavigate(APP_SCREEN.REFRESH_ISLAND)}
       />
+      <ItemFunction
+        text="Color Filter"
+        onPress={handleNavigate(APP_SCREEN.COLOR_FILTER)}
+      />
     </ScrollView>
   );
 };

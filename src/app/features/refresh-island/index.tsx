@@ -69,10 +69,10 @@ export const RefreshIsland = () => {
           <Paint ref={paint}>
             <ColorMatrix
               matrix={[
-                1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 18, -9,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, -20,
               ]}
             />
-            <Blur blur={5} />
+            <Blur blur={10} />
           </Paint>
           <Group layer={paint}>
             <RoundedRect
@@ -86,7 +86,6 @@ export const RefreshIsland = () => {
           </Group>
         </Canvas>
         <View style={styles.dynamicIsland} />
-        {/* <Animated.View style={box} /> */}
       </View>
     </GestureDetector>
   );
