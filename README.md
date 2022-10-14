@@ -43,3 +43,7 @@
 ## Telegram Lock
 
 <image src="./preview/telegram_lock.gif"/>
+
+## Icon Transition
+
+<image src="./preview/icon_transition.gif"/>
