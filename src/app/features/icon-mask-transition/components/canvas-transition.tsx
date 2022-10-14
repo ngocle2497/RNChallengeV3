@@ -5,12 +5,14 @@ import {
   Canvas,
   ColorMatrix,
   Group,
+  Mask,
   Paint,
   SkImage,
   useImage,
   usePaintRef,
 } from '@shopify/react-native-skia';
 
+import { BackgroundImage } from './background-image';
 import { IconButton } from './icon-button';
 import { ImageMask } from './image-mask';
 
@@ -56,12 +58,17 @@ export const CanvasTransition = () => {
           />
           {/* <Blur blur={blur} /> */}
         </Paint>
-        <Group layer={paint}>
-          <ImageMask activeImage={activeImage} imageSK={homeImage} />
-          <ImageMask activeImage={activeImage} imageSK={messageImage} />
-          <ImageMask activeImage={activeImage} imageSK={shapesImage} />
-          <ImageMask activeImage={activeImage} imageSK={statusImage} />
-        </Group>
+        <Mask
+          mask={
+            <Group layer={paint}>
+              <ImageMask activeImage={activeImage} imageSK={homeImage} />
+              <ImageMask activeImage={activeImage} imageSK={messageImage} />
+              <ImageMask activeImage={activeImage} imageSK={shapesImage} />
+              <ImageMask activeImage={activeImage} imageSK={statusImage} />
+            </Group>
+          }>
+          <BackgroundImage />
+        </Mask>
       </Canvas>
       <View style={styles.rowIcons}>
         <IconButton onPress={handleSelectIconMask(homeImage)} icon="home" />
