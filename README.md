@@ -39,3 +39,7 @@
 ## Scratch ticket
 
 <image src="./preview/scratch_tickets.gif"/>
+
+## Telegram Lock
+
+<image src="./preview/telegram_lock.gif"/>

@@ -10,6 +10,7 @@ export enum APP_SCREEN {
   REFRESH_ISLAND = 'REFRESH_ISLAND',
   COLOR_FILTER = 'COLOR_FILTER',
   SCRATCH_TICKET = 'SCRATCH_TICKET',
+  TELEGRAM_LOCK = 'TELEGRAM_LOCK',
 }
 
 export type RootStackParamList = {
@@ -24,4 +25,5 @@ export type RootStackParamList = {
   [APP_SCREEN.REFRESH_ISLAND]: undefined;
   [APP_SCREEN.COLOR_FILTER]: undefined;
   [APP_SCREEN.SCRATCH_TICKET]: undefined;
+  [APP_SCREEN.TELEGRAM_LOCK]: undefined;
 };

@@ -57,6 +57,10 @@ export const Home = () => {
         text="Scratch Ticket"
         onPress={handleNavigate(APP_SCREEN.SCRATCH_TICKET)}
       />
+      <ItemFunction
+        text="Telegram Lock"
+        onPress={handleNavigate(APP_SCREEN.TELEGRAM_LOCK)}
+      />
     </ScrollView>
   );
 };

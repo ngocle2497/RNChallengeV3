@@ -19,6 +19,7 @@ import { ScratchTicket } from '../features/scratch-tickets';
 import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SpaceButton } from '../features/space-button';
 import { SwipeSort } from '../features/swipe-sort';
+import { TelegramLock } from '../features/telegram-lock';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -89,6 +90,11 @@ export const RootNavigation = () => {
           options={{ title: 'Scratch Ticket' }}
           name={APP_SCREEN.SCRATCH_TICKET}
           component={ScratchTicket}
+        />
+        <RootStack.Screen
+          options={{ title: 'Telegram Lock', headerShown: false }}
+          name={APP_SCREEN.TELEGRAM_LOCK}
+          component={TelegramLock}
         />
       </RootStack.Navigator>
     </NavigationContainer>
