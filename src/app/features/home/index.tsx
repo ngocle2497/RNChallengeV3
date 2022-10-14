@@ -61,6 +61,10 @@ export const Home = () => {
         text="Telegram Lock"
         onPress={handleNavigate(APP_SCREEN.TELEGRAM_LOCK)}
       />
+      <ItemFunction
+        text="Icon Mask Transition"
+        onPress={handleNavigate(APP_SCREEN.ICON_MASK_TRANSITION)}
+      />
     </ScrollView>
   );
 };

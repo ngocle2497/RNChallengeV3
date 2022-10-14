@@ -13,6 +13,7 @@ import { CardGradient } from '../features/card-gradient';
 import { CardRotate } from '../features/card-rotate';
 import { ColorFilter } from '../features/color-filter';
 import { Home } from '../features/home';
+import { IconMaskTransition } from '../features/icon-mask-transition';
 import { MountedElement } from '../features/mounted-element';
 import { RefreshIsland } from '../features/refresh-island';
 import { ScratchTicket } from '../features/scratch-tickets';
@@ -95,6 +96,11 @@ export const RootNavigation = () => {
           options={{ title: 'Telegram Lock', headerShown: false }}
           name={APP_SCREEN.TELEGRAM_LOCK}
           component={TelegramLock}
+        />
+        <RootStack.Screen
+          options={{ title: 'IconMaskTransition' }}
+          name={APP_SCREEN.ICON_MASK_TRANSITION}
+          component={IconMaskTransition}
         />
       </RootStack.Navigator>
     </NavigationContainer>

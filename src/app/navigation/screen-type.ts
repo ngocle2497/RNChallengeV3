@@ -11,6 +11,7 @@ export enum APP_SCREEN {
   COLOR_FILTER = 'COLOR_FILTER',
   SCRATCH_TICKET = 'SCRATCH_TICKET',
   TELEGRAM_LOCK = 'TELEGRAM_LOCK',
+  ICON_MASK_TRANSITION = 'ICON_MASK_TRANSITION',
 }
 
 export type RootStackParamList = {
@@ -26,4 +27,5 @@ export type RootStackParamList = {
   [APP_SCREEN.COLOR_FILTER]: undefined;
   [APP_SCREEN.SCRATCH_TICKET]: undefined;
   [APP_SCREEN.TELEGRAM_LOCK]: undefined;
+  [APP_SCREEN.ICON_MASK_TRANSITION]: undefined;
 };
