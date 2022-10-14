@@ -1,4 +1,4 @@
-import { SkiaMutableValue, SkImage } from '@shopify/react-native-skia';
+import { SkImage } from '@shopify/react-native-skia';
 
 import { IconTypes } from './icons';
 
@@ -9,5 +9,5 @@ export type IconButtonProps = {
 
 export type ImageMaskProps = {
   imageSK: SkImage;
-  activeImage: SkiaMutableValue<SkImage | null>;
+  activeImage: SkImage | null;
 };

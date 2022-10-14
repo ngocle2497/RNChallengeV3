@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
   canvas: {
     width: WIDTH_CANVAS,
+    backgroundColor: '#ffffff',
     height: HEIGHT_CANVAS,
   },
   iconButton: { width: 24, height: 24 },
