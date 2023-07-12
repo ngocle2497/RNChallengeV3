@@ -1,36 +1,43 @@
-import {
-  Canvas as SKCanvas,
-  Image,
-  Rect,
-  useCanvasRef,
-  useImage,
-} from '@shopify/react-native-skia';
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
 import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {sharedClamp} from '../../constants';
-import {navigate} from '../../navigation/navigation-service';
-import {APP_SCREEN} from '../../navigation/screen-type';
-import {DotGesture} from './components/dot-gesture';
-import {CALCULATED_IMAGE_HEIGHT, CALCULATED_IMAGE_WIDTH} from './constants';
-import {useGesture} from './hooks';
-import {Grid} from './components/grid';
-import {Image as EXImage} from 'expo-image';
+
+import {
+  Image,
+  Canvas as SKCanvas,
+  useCanvasRef,
+  useImage,
+} from '@shopify/react-native-skia';
+import { Image as EXImage } from 'expo-image';
+
+import { DotGesture } from './components/dot-gesture';
+import { Grid } from './components/grid';
+import { CALCULATED_IMAGE_HEIGHT, CALCULATED_IMAGE_WIDTH } from './constants';
+import { useGesture } from './hooks';
+
+import { sharedClamp } from '../../constants';
+import { navigate } from '../../navigation/navigation-service';
+import { APP_SCREEN } from '../../navigation/screen-type';
 
 const Canvas = Animated.createAnimatedComponent(SKCanvas);
 
 export const CropImage = () => {
   // state
   const x1 = useSharedValue(0);
+
   const y1 = useSharedValue(0);
 
   const x2 = useSharedValue(CALCULATED_IMAGE_WIDTH);
+
   const y2 = useSharedValue(CALCULATED_IMAGE_HEIGHT);
+
   const {
     bottomLeftGesture,
     bottomRightGesture,
@@ -45,6 +52,7 @@ export const CropImage = () => {
   });
 
   const canvasRef = useCanvasRef();
+
   const image = useImage(require('./image/food.jpg'));
 
   // point topLeft
@@ -70,6 +78,7 @@ export const CropImage = () => {
   const xBottomLeft = useDerivedValue(() =>
     sharedClamp(x1.value, 0, CALCULATED_IMAGE_WIDTH),
   );
+
   const yBottomLeft = useDerivedValue(() =>
     sharedClamp(y2.value, 0, CALCULATED_IMAGE_HEIGHT),
   );
@@ -78,6 +87,7 @@ export const CropImage = () => {
   const xBottomRight = useDerivedValue(() =>
     sharedClamp(x2.value, 0, CALCULATED_IMAGE_WIDTH),
   );
+
   const yBottomRight = useDerivedValue(() =>
     sharedClamp(y2.value, 0, CALCULATED_IMAGE_HEIGHT),
   );
@@ -89,6 +99,7 @@ export const CropImage = () => {
     const width = widthRect.value;
 
     const image = canvasRef.current?.makeImageSnapshot();
+
     if (image) {
       navigate(APP_SCREEN.CROP_IMAGE_RESULT, {
         image,
@@ -100,8 +111,11 @@ export const CropImage = () => {
 
   const handleExplain = () => {
     x1.value = withTiming(0);
+
     y1.value = withTiming(0);
+
     x2.value = withTiming(CALCULATED_IMAGE_WIDTH);
+
     y2.value = withTiming(CALCULATED_IMAGE_HEIGHT);
   };
 
@@ -128,10 +142,13 @@ export const CropImage = () => {
   const widthCanvas = useDerivedValue(
     () => CALCULATED_IMAGE_WIDTH - (gridLeft.value + gridRight.value),
   );
+
   const heightCanvas = useDerivedValue(
     () => CALCULATED_IMAGE_HEIGHT - (gridTop.value + gridBottom.value),
   );
+
   const leftImage = useDerivedValue(() => -gridLeft.value);
+
   const topImage = useDerivedValue(() => -gridTop.value);
 
   const canvasStyle = useAnimatedStyle(() => ({
@@ -203,11 +220,6 @@ export const CropImage = () => {
 };
 
 const styles = StyleSheet.create({
-  canvas: {
-    width: CALCULATED_IMAGE_WIDTH,
-    height: CALCULATED_IMAGE_HEIGHT,
-    opacity: 0,
-  },
   root: {
     flex: 1,
     backgroundColor: '#000',

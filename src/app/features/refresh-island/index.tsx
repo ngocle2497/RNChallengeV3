@@ -1,7 +1,7 @@
 import React from 'react';
-import {useWindowDimensions, View} from 'react-native';
+import { useWindowDimensions, View } from 'react-native';
 
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   Extrapolate,
   useDerivedValue,
@@ -18,9 +18,6 @@ import {
   interpolate,
   Paint,
   RoundedRect,
-  useSharedValueEffect,
-  useValue,
-  useValueEffect,
 } from '@shopify/react-native-skia';
 
 import {
@@ -30,13 +27,14 @@ import {
   RADIUS_ISLAND,
   WIDTH_ISLAND,
 } from './constants';
-import {styles} from './styles';
+import { styles } from './styles';
 
 export const RefreshIsland = () => {
   // state
-  const {width} = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const translateY = useSharedValue(0);
+
   const translateYSkia = useDerivedValue(() => {
     return interpolate(
       translateY.value,
@@ -48,7 +46,7 @@ export const RefreshIsland = () => {
 
   // gesture
   const gesture = Gesture.Pan()
-    .onChange(({changeY}) => {
+    .onChange(({ changeY }) => {
       translateY.value += changeY;
     })
     .onEnd(() => {

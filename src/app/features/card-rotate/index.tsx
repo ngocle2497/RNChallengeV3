@@ -8,9 +8,11 @@ import { styles } from './styles';
 const { width } = Dimensions.get('window');
 
 const BASE_WIDTH = width * 0.8;
+
 const BASE_HEIGHT = 270;
 
 const CARD_WIDTH = BASE_WIDTH - 15;
+
 const CARD_HEIGHT = BASE_HEIGHT - 15;
 
 export const CardRotate = () => {

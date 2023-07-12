@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const WIDTH_CARD = 250;
+
 export const HEIGHT_CARD = 150;
 
 export const styles = StyleSheet.create({

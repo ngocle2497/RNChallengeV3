@@ -1,9 +1,10 @@
-import React, {Suspense} from 'react';
-import {LogBox, StyleSheet} from 'react-native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {RootNavigation} from './app/navigation/root';
+import React, { Suspense } from 'react';
+import { LogBox, StyleSheet } from 'react-native';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { RootNavigation } from './app/navigation/root';
 LogBox.ignoreAllLogs();
 
 const styles = StyleSheet.create({

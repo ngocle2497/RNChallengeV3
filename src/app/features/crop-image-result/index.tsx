@@ -1,15 +1,18 @@
-import {Canvas, Image} from '@shopify/react-native-skia';
 import React from 'react';
-import {StyleSheet, useWindowDimensions} from 'react-native';
-import {APP_SCREEN, StackScreenProps} from '../../navigation/screen-type';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+
+import { Canvas, Image } from '@shopify/react-native-skia';
+
+import { APP_SCREEN, StackScreenProps } from '../../navigation/screen-type';
 
 export const CropImageResult = ({
   route: {
-    params: {image, width, height},
+    params: { image, width, height },
   },
 }: StackScreenProps<APP_SCREEN.CROP_IMAGE_RESULT>) => {
   // state
   const screenWidth = useWindowDimensions().width;
+
   // render
   return (
     <Canvas style={styles.canvas}>

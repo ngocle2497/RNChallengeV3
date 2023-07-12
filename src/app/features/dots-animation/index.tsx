@@ -1,3 +1,6 @@
+import React from 'react';
+import { View } from 'react-native';
+
 import {
   Canvas,
   Easing,
@@ -6,10 +9,9 @@ import {
   useValue,
   useValueEffect,
 } from '@shopify/react-native-skia';
-import React from 'react';
-import {View} from 'react-native';
-import {Dot} from './components/dot';
-import {styles} from './styles';
+
+import { Dot } from './components/dot';
+import { styles } from './styles';
 
 const DOTS = Array(200)
   .fill(0)
@@ -18,6 +20,7 @@ const DOTS = Array(200)
 export const DotsAnimation = () => {
   // state
   const progress = useValue(0);
+
   const active = useValue(false);
 
   // func

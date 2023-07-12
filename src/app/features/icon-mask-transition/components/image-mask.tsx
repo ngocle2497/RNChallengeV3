@@ -8,15 +8,18 @@ import { ImageMaskProps } from '../type';
 export const ImageMask = ({ imageSK, activeImage }: ImageMaskProps) => {
   // state
   const blur = useValue(10);
+
   const opacity = useValue(0);
 
   // effect
   useEffect(() => {
     if (activeImage === imageSK) {
       runTiming(blur, 1);
+
       runTiming(opacity, 1);
     } else {
       runTiming(blur, 20);
+
       runTiming(opacity, 0);
     }
   }, [activeImage]);

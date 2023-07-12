@@ -3,6 +3,7 @@ import {
   SkiaValue,
   SkPath,
 } from '@shopify/react-native-skia';
+
 export type PathType = {
   id: string;
 };

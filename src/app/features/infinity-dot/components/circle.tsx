@@ -16,12 +16,15 @@ import Animated, {
 import { CircleProps, DotProps } from '../type';
 
 const LENGTH_DOT = 18;
+
 const SIZE_DOT = 40;
+
 const RADIUS_CIRCLE = 100;
 
 const Dot = ({ index, left }: DotProps) => {
   // state
   const progress = useSharedValue(0);
+
   const sizeOverlay = useDerivedValue(() =>
     interpolate(progress.value, [0, 0.0000001, 0.5, 1], [4, SIZE_DOT, 4, 4]),
   );

@@ -1,28 +1,23 @@
-import React, {useCallback, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { TouchableWithoutFeedback, View } from 'react-native';
+
 import Animated, {
-  Easing,
   interpolate,
   interpolateColor,
   useAnimatedStyle,
   useDerivedValue,
-  useSharedValue,
   withSpring,
-  withTiming,
 } from 'react-native-reanimated';
-import {Light} from './components/light';
-import {styles} from './styles';
+
+import { Light } from './components/light';
+import { styles } from './styles';
 
 export const DarkLightMode = () => {
   // state
   const [isDark, setIsDark] = useState<boolean>(false);
 
   const progress = useDerivedValue(() => withSpring(isDark ? 1 : 0));
+
   const moonBackground = useDerivedValue(() =>
     interpolateColor(progress.value, [0, 1], ['#000', '#fff'], undefined, {
       gamma: 5,
@@ -38,6 +33,7 @@ export const DarkLightMode = () => {
   const translateX = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [50, 15]),
   );
+
   const translateY = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [-50, -15]),
   );
@@ -46,13 +42,17 @@ export const DarkLightMode = () => {
   const handleToggle = () => {
     setIsDark(v => !v);
   };
+
   const renderLight = useCallback((_: number, i: number) => {
     return <Light key={i} progress={progress} rotateDeg={(360 / 10) * i} />;
   }, []);
 
   // style
   const sunStyle = useAnimatedStyle(() => ({
-    transform: [{translateX: translateX.value}, {translateY: translateY.value}],
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+    ],
   }));
 
   const moonStyle = useAnimatedStyle(() => ({

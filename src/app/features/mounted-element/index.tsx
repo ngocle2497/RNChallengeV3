@@ -16,6 +16,7 @@ export const MountedElement = () => {
   const handlePush = () => {
     setData(x => x.concat(randomBox()));
   };
+
   const handlePop = () => {
     setData(x => x.slice(0, x.length - 1));
   };

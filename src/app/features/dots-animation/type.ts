@@ -1,4 +1,4 @@
-import {SkiaValue} from '@shopify/react-native-skia';
+import { SkiaValue } from '@shopify/react-native-skia';
 
 export type DotProps = {
   index: number;

@@ -1,7 +1,7 @@
-import React, {useMemo} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import React, { useMemo } from 'react';
+import { Button, StyleSheet, View } from 'react-native';
 
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   Easing,
   interpolateColor,
@@ -20,21 +20,25 @@ import {
   SkPath,
 } from '@shopify/react-native-skia';
 
-import {GRAPH_HEIGHT, GRAPH_WIDTH, randomDataChart} from './mock';
-import {DataPath} from './type';
+import { GRAPH_HEIGHT, GRAPH_WIDTH, randomDataChart } from './mock';
+import { DataPath } from './type';
 
-import {sharedClamp} from '../../constants';
+import { sharedClamp } from '../../constants';
 
 const dataExample = randomDataChart();
+
 const dayPathSk = Skia.Path.MakeFromSVGString(
   dataExample.dayData.path,
 ) as SkPath;
+
 const weekPathSk = Skia.Path.MakeFromSVGString(
   dataExample.weekData.path,
 ) as SkPath;
+
 const monthPathSk = Skia.Path.MakeFromSVGString(
   dataExample.monthData.path,
 ) as SkPath;
+
 const yearPathSk = Skia.Path.MakeFromSVGString(
   dataExample.yearData.path,
 ) as SkPath;
@@ -42,18 +46,28 @@ const yearPathSk = Skia.Path.MakeFromSVGString(
 export const LineChart = () => {
   // state
   const translateX = useSharedValue(-dataExample.dayData.width + GRAPH_WIDTH);
+
   const leftBound = useSharedValue(-dataExample.dayData.width + GRAPH_WIDTH);
+
   const reset = useSharedValue(false);
+
   const progressPath = useSharedValue(0);
+
   const progressColor = useSharedValue(0);
+
   const fromPath = useSharedValue(dayPathSk);
+
   const toPath = useSharedValue(dayPathSk);
 
   const currentColor = useSharedValue(dataExample.dayData.color);
+
   const nextColor = useSharedValue(dataExample.dayData.color);
 
   const path = useDerivedValue(() => {
-    if (!fromPath.value || !toPath.value) return Skia.Path.Make();
+    if (!fromPath.value || !toPath.value) {
+      return Skia.Path.Make();
+    }
+
     return interpolatePaths(
       progressPath.value,
       [0, 1],
@@ -70,7 +84,7 @@ export const LineChart = () => {
   }, [progressColor, currentColor, nextColor]);
 
   const transform = useDerivedValue(
-    () => [{translateX: translateX.value}],
+    () => [{ translateX: translateX.value }],
     [translateX],
   );
 
@@ -79,7 +93,9 @@ export const LineChart = () => {
     return () => {
       // color
       currentColor.value = nextColor.value;
+
       nextColor.value = data.color;
+
       progressColor.value = 0;
 
       // path
@@ -90,15 +106,21 @@ export const LineChart = () => {
       });
 
       fromPath.value = toPath.value;
+
       toPath.value = nextNextPath;
+
       progressPath.value = 0;
+
       leftBound.value = -data.width + GRAPH_WIDTH;
+
       reset.value = true;
 
-      progressPath.value = withTiming(1, {duration: 300});
+      progressPath.value = withTiming(1, { duration: 300 });
+
       translateX.value = withTiming(-data.width + GRAPH_WIDTH, {
         duration: 300,
       });
+
       progressColor.value = withTiming(-data.width + GRAPH_WIDTH, {
         duration: 300,
         easing: Easing.linear,
@@ -111,10 +133,11 @@ export const LineChart = () => {
       .onBegin(() => {
         if (reset.value) {
           translateX.value = leftBound.value;
+
           reset.value = false;
         }
       })
-      .onChange(({changeX}) => {
+      .onChange(({ changeX }) => {
         translateX.value = sharedClamp(
           translateX.value + changeX,
           leftBound.value,
@@ -124,9 +147,9 @@ export const LineChart = () => {
   }, []);
 
   useAnimatedReaction(
-    () => ({fromPath: fromPath.value, to: toPath.value}),
+    () => ({ fromPath: fromPath.value, to: toPath.value }),
     v => {
-      console.log({v});
+      console.log({ v });
     },
   );
 

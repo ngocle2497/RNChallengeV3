@@ -13,7 +13,9 @@ export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } =
   Dimensions.get('window');
 
 export const BLACK_OVERLAY = 'rgba(0,0,0,.4)';
+
 export const WHITE_OVERLAY = 'rgba(255,255,255,.7)';
+
 export const origin: SkPoint = {
   x: SCREEN_WIDTH / 2,
   y: SCREEN_HEIGHT / 2,
@@ -27,6 +29,7 @@ export const sharedTiming = (
   callBack?: AnimationCallback,
 ) => {
   'worklet';
+
   return withTiming(
     toValue,
     Object.assign(
@@ -39,6 +42,7 @@ export const sharedTiming = (
     callBack,
   );
 };
+
 export const INPUT_OPACITY = [
   0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12,
   0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25,

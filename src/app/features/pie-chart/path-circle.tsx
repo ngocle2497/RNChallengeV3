@@ -20,16 +20,20 @@ import { PathCircleProps } from './type';
 export const PathCircle = ({ color, index, pieData }: PathCircleProps) => {
   // state
   const start = useValue(0);
+
   const end = useValue(0);
+
   const path = useValue(
     Skia.Path.Make().moveTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2),
   );
+
   const rotate = useValue(0);
 
   // effect
   const transform = useComputedValue(() => {
     return [{ rotate: rotate.current }];
   }, [rotate]);
+
   useComputedValue(() => {
     const newPath = Skia.Path.Make()
       .moveTo(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2)
@@ -42,9 +46,13 @@ export const PathCircle = ({ color, index, pieData }: PathCircleProps) => {
         },
         true,
       );
+
     path.current = newPath;
+
     const nextEnd = 1 * (pieData.current[index].percent / 100);
+
     runTiming(end, nextEnd);
+
     runTiming(
       rotate,
 

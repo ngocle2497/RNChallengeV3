@@ -1,23 +1,34 @@
-import {Dimensions} from 'react-native';
+/* eslint-disable max-params */
+import { Dimensions } from 'react-native';
 
-import {curveBumpX as curveBasis, line, scaleLinear, scaleTime} from 'd3';
+import { curveBumpX as curveBasis, line, scaleLinear, scaleTime } from 'd3';
 import gaussian from 'gaussian';
 
-import {DataChart, DataPath} from './type';
+import { DataChart, DataPath } from './type';
 
 const DAY_LENGTH_DATA = 5;
+
 const WEEK_LENGTH_DATA = DAY_LENGTH_DATA * 7;
+
 const MONTH_LENGTH_DATA = DAY_LENGTH_DATA * 30;
+
 const YEAR_LENGTH_DATA = DAY_LENGTH_DATA * 10;
+
 export const GRAPH_HEIGHT = 350;
+
 export const GRAPH_WIDTH = Dimensions.get('window').width - 20;
+
 export const GRAPH_DAY_WIDTH = Dimensions.get('window').width - 20;
+
 export const GRAPH_WEEK_WIDTH = GRAPH_DAY_WIDTH * 1.2;
+
 export const GRAPH_MONTH_WIDTH = GRAPH_DAY_WIDTH * 1.5;
+
 export const GRAPH_YEAR_WIDTH = GRAPH_DAY_WIDTH * 5;
 
 function weightedRandom(mean: number, variance: number): number {
   const distribution = gaussian(mean, variance);
+
   // Take a random sample using inverse transform sampling method.
   return distribution.ppf(Math.random());
 }
@@ -31,11 +42,13 @@ const getPathChart = (
   const y = scaleLinear()
     .domain([0, max])
     .range([GRAPH_HEIGHT - 10, 35]);
+
   const x = scaleTime()
     .domain([data[0].date, data[data.length - 1].date])
     .range([10, width - 10]);
 
   const naturalParts = Math.floor(numberOfPoint / data.length);
+
   // const actualData: Array<DataChart> = Array(numberOfPoint)
   //   .fill(0)
   //   .map((_, i) => {
@@ -43,6 +56,7 @@ const getPathChart = (
   //     return fakeData;
   //   });
   const actualData: Array<DataChart> = [];
+
   data.forEach((element, i) => {
     if (i === data.length - 1) {
       actualData.push(
@@ -52,6 +66,7 @@ const getPathChart = (
       actualData.push(...Array(naturalParts).fill(element));
     }
   });
+
   const curvedLine = line<DataChart>()
     .x(d => x(new Date(d.date)))
     .y(d => y(d.value))
@@ -73,8 +88,11 @@ export const randomDataChart = (): {
       value: Math.abs(weightedRandom(0, Math.pow(i + 1, 1))),
       date: new Date(i),
     }));
+
   const maxYear = Math.max(...yearDataChart.map(x => x.value));
+
   const minYear = Math.min(...yearDataChart.map(x => x.value));
+
   const pYear = getPathChart(
     yearDataChart,
     maxYear,
@@ -87,8 +105,11 @@ export const randomDataChart = (): {
     0,
     DAY_LENGTH_DATA,
   );
+
   const maxDay = Math.max(...dayDataChart.map(x => x.value));
+
   const minDay = Math.min(...dayDataChart.map(x => x.value));
+
   const pDay = getPathChart(
     dayDataChart,
     maxDay,
@@ -98,8 +119,11 @@ export const randomDataChart = (): {
 
   // week
   const weekDataChart = yearDataChart.slice(0, WEEK_LENGTH_DATA);
+
   const maxWeek = Math.max(...weekDataChart.map(x => x.value));
+
   const minWeek = Math.min(...weekDataChart.map(x => x.value));
+
   const pWeek = getPathChart(
     weekDataChart,
     maxWeek,
@@ -109,8 +133,11 @@ export const randomDataChart = (): {
 
   // month
   const monthDataChart = yearDataChart.slice(0, MONTH_LENGTH_DATA);
+
   const maxMonth = Math.max(...monthDataChart.map(x => x.value));
+
   const minMonth = Math.min(...monthDataChart.map(x => x.value));
+
   const pMonth = getPathChart(
     monthDataChart,
     maxMonth,

@@ -23,19 +23,30 @@ import { randomUUID } from '../../constants';
 
 export const ScratchTicket = () => {
   const { width } = useWindowDimensions();
+
   const cat = useImage(images.cat);
+
   const scratch_me = useImage(images.scratch_me);
+
   const [paths, setPaths] = useState<Array<PathType>>([]);
+
   const activePath = useValue(Skia.Path.Make());
+
   const activePathID = useValue<string | undefined>(undefined);
+
   const [heightCanvas, setHeightCanvas] = useState(0);
 
   const createPath = (x: number, y: number) => {
     const newId = randomUUID();
+
     setPaths(d => d.concat([{ id: newId }]));
+
     const path = Skia.Path.Make();
+
     path.moveTo(x, y);
+
     activePath.current = path;
+
     activePathID.current = newId;
   };
 
@@ -79,6 +90,7 @@ export const ScratchTicket = () => {
   if (!cat || !scratch_me) {
     return null;
   }
+
   // render
   return (
     <GestureDetector gesture={gesture}>

@@ -18,6 +18,7 @@ const PADDING_CANVAS = 30;
 export const Overlay = ({ height, width }: OverlayProps) => {
   // state
   const progressSkia = useLoop({ duration: 2000 });
+
   const rSkia = useComputedValue(
     () => interpolate(progressSkia.current, [0, 1], [2, 10]),
     [progressSkia],

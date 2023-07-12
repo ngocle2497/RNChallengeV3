@@ -1,5 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {APP_SIZE, LEFT_TOP, APP_RADIUS} from './constant';
+import { StyleSheet } from 'react-native';
+
+import { APP_RADIUS, APP_SIZE, LEFT_TOP } from './constant';
 
 export const styles = StyleSheet.create({
   root: {

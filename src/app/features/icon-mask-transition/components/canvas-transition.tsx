@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 
 import {
   Canvas,
@@ -11,20 +11,25 @@ import {
   useImage,
 } from '@shopify/react-native-skia';
 
-import {BackgroundImage} from './background-image';
-import {IconButton} from './icon-button';
-import {ImageMask} from './image-mask';
+import { BackgroundImage } from './background-image';
+import { IconButton } from './icon-button';
+import { ImageMask } from './image-mask';
 
-import {icons} from '../icons';
-import {styles} from '../styles';
+import { icons } from '../icons';
+import { styles } from '../styles';
 
 export const CanvasTransition = () => {
   // state
   const homeImage = useImage(icons.home);
+
   const messageImage = useImage(icons.message);
+
   const notificationImage = useImage(icons.notification);
+
   const shapesImage = useImage(icons.shapes);
+
   const statusImage = useImage(icons.status);
+
   const [activeImage, setActive] = useState<SkImage | null>(null);
 
   // func
@@ -33,6 +38,7 @@ export const CanvasTransition = () => {
       setActive(nextImage);
     };
   };
+
   if (
     !homeImage ||
     !messageImage ||

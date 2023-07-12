@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, ViewProps, useWindowDimensions} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import { StyleSheet, useWindowDimensions, ViewProps } from 'react-native';
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -8,16 +9,26 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {APP_SIZE, DURATION, EASING, LEFT_TOP, PROGRESS_FLIP} from '../constant';
-import {styles} from '../styles';
-import {AppProps} from '../type';
-import {Image} from 'expo-image';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export const App = ({progress, maxHeight}: AppProps) => {
+import { Image } from 'expo-image';
+
+import {
+  APP_SIZE,
+  DURATION,
+  EASING,
+  LEFT_TOP,
+  PROGRESS_FLIP,
+} from '../constant';
+import { styles } from '../styles';
+import { AppProps } from '../type';
+
+export const App = ({ progress, maxHeight }: AppProps) => {
   // state
-  const {width: targetWidth} = useWindowDimensions();
-  const {top: insetTop} = useSafeAreaInsets();
+  const { width: targetWidth } = useWindowDimensions();
+
+  const { top: insetTop } = useSafeAreaInsets();
+
   const width = useDerivedValue(() =>
     interpolate(
       progress.value,
@@ -61,7 +72,7 @@ export const App = ({progress, maxHeight}: AppProps) => {
   // func
   const gesture = Gesture.Tap().onStart(() => {
     // Can use measure to get left,top of icon. then pass them to detail-app to animated from icon
-    progress.value = withTiming(1, {duration: DURATION, easing: EASING});
+    progress.value = withTiming(1, { duration: DURATION, easing: EASING });
   });
 
   // props
@@ -74,11 +85,11 @@ export const App = ({progress, maxHeight}: AppProps) => {
     <GestureDetector gesture={gesture}>
       <Animated.View
         animatedProps={props}
-        style={[styles.app, {width, height, opacity, left, top}]}>
+        style={[styles.app, { width, height, opacity, left, top }]}>
         <Image
           style={[
             StyleSheet.absoluteFillObject,
-            {top: 5, left: 5, bottom: 5, right: 5},
+            { top: 5, left: 5, bottom: 5, right: 5 },
           ]}
           source={require('../images/icon-app.png')}
         />

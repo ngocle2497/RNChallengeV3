@@ -1,5 +1,5 @@
-import {SkImage} from '@shopify/react-native-skia';
-import {StackScreenProps as RNStackScreenProps} from '@react-navigation/stack';
+import { StackScreenProps as RNStackScreenProps } from '@react-navigation/stack';
+import { SkImage } from '@shopify/react-native-skia';
 
 export enum APP_SCREEN {
   HOME = 'HOME',
@@ -66,5 +66,6 @@ export type RootStackParamList = {
   [APP_SCREEN.CROP_IMAGE]: undefined;
   [APP_SCREEN.SOUND_WAVE]: undefined;
 };
+
 export type StackScreenProps<T extends keyof RootStackParamList> =
   RNStackScreenProps<RootStackParamList, T>;

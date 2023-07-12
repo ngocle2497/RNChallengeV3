@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import {HEIGHT_IMAGE, HEIGHT_WALL, WIDTH_IMAGE} from './constants';
+import { HEIGHT_IMAGE, HEIGHT_WALL, WIDTH_IMAGE } from './constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     width: WIDTH_IMAGE,
     height: HEIGHT_IMAGE,
     position: 'absolute',
-    transform: [{scaleX: 25}],
+    transform: [{ scaleX: 25 }],
     right: (WIDTH_IMAGE * 25 - WIDTH_IMAGE) / 2,
   },
   bottomContainer: {
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     width: WIDTH_IMAGE,
     height: HEIGHT_IMAGE,
     position: 'absolute',
-    transform: [{scaleY: 50}],
+    transform: [{ scaleY: 50 }],
     bottom: (HEIGHT_IMAGE * 50 - HEIGHT_IMAGE) / 2,
   },
   overlay: {

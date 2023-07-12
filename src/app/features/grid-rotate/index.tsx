@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
 import Animated, {
   Extrapolate,
   interpolate,
@@ -8,13 +9,15 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated';
-import {ItemGrid} from './components/item-grid';
-import {GridProvider} from './constant';
-import {styles} from './styles';
+
+import { ItemGrid } from './components/item-grid';
+import { GridProvider } from './constant';
+import { styles } from './styles';
 
 export const GridRotate = () => {
   // state
   const scrollY = useSharedValue(0);
+
   const scale = useDerivedValue(() =>
     interpolate(scrollY.value, [0, 200], [0.85, 1.2]),
   );
@@ -24,22 +27,23 @@ export const GridRotate = () => {
   );
 
   const onScroll = useAnimatedScrollHandler({
-    onScroll: ({contentOffset: {y}}) => {
+    onScroll: ({ contentOffset: { y } }) => {
       scrollY.value = y;
-      console.log({y});
+
+      console.log({ y });
     },
   });
 
   // style
   const gridStyle = useAnimatedStyle(() => ({
-    transform: [{rotate: `${rotate.value}deg`}, {scale: scale.value}],
+    transform: [{ rotate: `${rotate.value}deg` }, { scale: scale.value }],
     justifyContent: 'center',
     alignItems: 'center',
   }));
 
   // render
   return (
-    <GridProvider value={{rotate}}>
+    <GridProvider value={{ rotate }}>
       <View style={styles.root}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}

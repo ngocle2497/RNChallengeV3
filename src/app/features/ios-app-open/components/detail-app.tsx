@@ -1,8 +1,7 @@
 import React from 'react';
-import {useWindowDimensions, ViewProps} from 'react-native';
-import {View, Text} from 'react-native';
-import {Image} from 'expo-image';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import { Text, useWindowDimensions, View, ViewProps } from 'react-native';
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -10,7 +9,10 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { Image } from 'expo-image';
+
 import {
   APP_RADIUS,
   APP_SIZE,
@@ -19,14 +21,17 @@ import {
   LEFT_TOP,
   PROGRESS_FLIP,
 } from '../constant';
-import {styles} from '../styles';
-import {DetailAppProps} from '../type';
+import { styles } from '../styles';
+import { DetailAppProps } from '../type';
 
-export const DetailApp = ({maxHeight, progress}: DetailAppProps) => {
+export const DetailApp = ({ maxHeight, progress }: DetailAppProps) => {
   // state
-  const {top: insetTop} = useSafeAreaInsets();
-  const {width: targetWidth} = useWindowDimensions();
+  const { top: insetTop } = useSafeAreaInsets();
+
+  const { width: targetWidth } = useWindowDimensions();
+
   const contentHeight = useDerivedValue(() => maxHeight.value);
+
   const actualWidth = useDerivedValue(() =>
     interpolate(
       progress.value,
@@ -80,9 +85,10 @@ export const DetailApp = ({maxHeight, progress}: DetailAppProps) => {
       Extrapolate.CLAMP,
     ),
   );
+
   // func
   const gesture = Gesture.Tap().onStart(() => {
-    progress.value = withTiming(0, {duration: DURATION, easing: EASING});
+    progress.value = withTiming(0, { duration: DURATION, easing: EASING });
   });
 
   // props
@@ -137,10 +143,9 @@ export const DetailApp = ({maxHeight, progress}: DetailAppProps) => {
               source={require('../icons/copy.png')}
             />
             <Text style={styles.noBoard}>No Boards</Text>
-            <Text
-              style={
-                styles.description
-              }>{`To add a board, tap the create board icon in\n the toolbar`}</Text>
+            <Text style={styles.description}>
+              {'To add a board, tap the create board icon in\n the toolbar'}
+            </Text>
           </View>
         </Animated.View>
       </Animated.View>

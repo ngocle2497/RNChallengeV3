@@ -1,17 +1,4 @@
-import {
-  Blur,
-  BlurMask,
-  Canvas,
-  Circle,
-  Group,
-  Mask,
-  Path,
-  Rect,
-  RoundedRect,
-  SweepGradient,
-  vec,
-} from '@shopify/react-native-skia';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   NativeEventEmitter,
   NativeModules,
@@ -20,15 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {
-  BAR_LENGTH,
-  CANVAS_HEIGHT,
-  CANVAS_WIDTH,
-  ORIGIN_GROUP,
-  SIZE_BALL,
-  WRAP_BALL,
-} from './constant';
-import {Bar} from './components/bar';
+
 import {
   Extrapolate,
   interpolate,
@@ -37,7 +16,26 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-const {RNSound} = NativeModules;
+import {
+  BlurMask,
+  Canvas,
+  Group,
+  RoundedRect,
+  SweepGradient,
+  vec,
+} from '@shopify/react-native-skia';
+
+import { Bar } from './components/bar';
+import {
+  BAR_LENGTH,
+  CANVAS_HEIGHT,
+  CANVAS_WIDTH,
+  ORIGIN_GROUP,
+  SIZE_BALL,
+  WRAP_BALL,
+} from './constant';
+
+const { RNSound } = NativeModules;
 
 const deg2rad = (deg: number) => {
   'worklet';
@@ -47,8 +45,9 @@ const deg2rad = (deg: number) => {
 
 export const SoundWave = () => {
   // state
-  const [ended, setEnded] = useState(false);
-  const data = useSharedValue(Array.from({length: BAR_LENGTH}).map(() => 0));
+  const [_, setEnded] = useState(false);
+
+  const data = useSharedValue(Array.from({ length: BAR_LENGTH }).map(() => 0));
 
   const bass = useDerivedValue(() => {
     return data.value.slice(0, 10).reduce((acc, cur) => acc + cur, 0) / 10;
@@ -60,7 +59,8 @@ export const SoundWave = () => {
 
   const rotate = useDerivedValue(() => {
     const nextRotate = deg2rad(interpolate(bass.value, [0, 45], [4, 360]));
-    return withTiming(nextRotate, {duration: 80});
+
+    return withTiming(nextRotate, { duration: 80 });
   });
 
   const scale = useDerivedValue(() => {
@@ -71,7 +71,7 @@ export const SoundWave = () => {
         [0.8, WRAP_BALL / SIZE_BALL],
         Extrapolate.CLAMP,
       ),
-      {duration: 80},
+      { duration: 80 },
     );
   });
 
@@ -80,7 +80,7 @@ export const SoundWave = () => {
       {
         rotate: rotate.value,
       },
-      {scale: scale.value},
+      { scale: scale.value },
     ];
   });
 
@@ -98,28 +98,33 @@ export const SoundWave = () => {
   };
 
   const renderBar = (_: any, index: number) => {
-    return <Bar index={index} data={data} />;
+    return <Bar index={index} key={index} data={data} />;
   };
 
   // effect
 
   useEffect(() => {
     RNSound.prepare(BAR_LENGTH);
+
     const unSubscribe = new NativeEventEmitter(RNSound).addListener(
       'AudioProcessing',
       _data => {
         data.value = _data;
       },
     );
+
     const unSubscribeOnEnd = new NativeEventEmitter(RNSound).addListener(
       'AudioEnd',
       () => {
         setEnded(true);
       },
     );
+
     return () => {
       unSubscribe.remove();
+
       unSubscribeOnEnd.remove();
+
       RNSound.destroy();
     };
   }, []);
@@ -131,13 +136,13 @@ export const SoundWave = () => {
         <View>
           <Canvas style={styles.canvas}>
             <Group origin={ORIGIN_GROUP}>
-              {Array.from({length: BAR_LENGTH}).map(renderBar)}
+              {Array.from({ length: BAR_LENGTH }).map(renderBar)}
             </Group>
           </Canvas>
         </View>
         <Canvas style={styles.wrapBall}>
           <Group
-            origin={{x: WRAP_BALL / 2, y: WRAP_BALL / 2}}
+            origin={{ x: WRAP_BALL / 2, y: WRAP_BALL / 2 }}
             transform={transform}>
             <RoundedRect
               r={SIZE_BALL}
@@ -163,7 +168,7 @@ export const SoundWave = () => {
         <View style={styles.wrapRight}>
           <Canvas style={styles.canvas}>
             <Group origin={ORIGIN_GROUP}>
-              {Array.from({length: BAR_LENGTH}).map(renderBar)}
+              {Array.from({ length: BAR_LENGTH }).map(renderBar)}
             </Group>
           </Canvas>
         </View>
@@ -203,7 +208,7 @@ const styles = StyleSheet.create({
     height: WRAP_BALL,
   },
   wrapRight: {
-    transform: [{rotateY: '180deg'}],
+    transform: [{ rotateY: '180deg' }],
   },
   rowFunc: {
     flexDirection: 'row',

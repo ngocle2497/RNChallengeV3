@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import {Image, useImage} from '@shopify/react-native-skia';
 import React from 'react';
-import {useWindowDimensions} from 'react-native';
-import {MaskViewProps} from '../type';
+import { useWindowDimensions } from 'react-native';
 
-export const MaskView = ({image}: MaskViewProps) => {
+import { Image } from '@shopify/react-native-skia';
+
+import { MaskViewProps } from '../type';
+
+export const MaskView = ({ image }: MaskViewProps) => {
   // state
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+
   // render
   return (
     <Image

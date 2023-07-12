@@ -14,9 +14,11 @@ import { styles } from './styles';
 export const LikeButton = () => {
   // state
   const [liked, setLiked] = useState<boolean>(false);
+
   const progress = useDerivedValue(() =>
     withTiming(liked ? 1 : 0, { duration: 500 }),
   );
+
   const likeOpacity = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [1, 0]),
   );
@@ -28,6 +30,7 @@ export const LikeButton = () => {
   const translateXLeftHeart = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [-200, 0]),
   );
+
   const rotateLeftHeart = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [-720, 30]),
   );
@@ -35,9 +38,11 @@ export const LikeButton = () => {
   const translateXRightHeart = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [200, 0]),
   );
+
   const rotateRightHeart = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [720 + 180, 150]),
   );
+
   const likedOpacity = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [0, 1]),
   );

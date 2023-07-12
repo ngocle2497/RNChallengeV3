@@ -12,7 +12,9 @@ import { Image } from './type';
 export const SwipeSort = () => {
   // state
   const positions = useSharedValue(arrayToObjectZIndex(listImage));
+
   console.log(arrayToObjectZIndex(listImage));
+
   // func
   const renderImage = (item: Image) => {
     return <ItemImage key={item.id} image={item} positions={positions} />;

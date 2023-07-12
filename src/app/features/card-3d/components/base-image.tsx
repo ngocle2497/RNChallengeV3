@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {Image} from 'expo-image';
+import { Image } from 'expo-image';
 
-import {images} from '../../../assets/images';
-import {styles} from '../styles';
+import { images } from '../../../assets/images';
+import { styles } from '../styles';
 
 export const BaseImage = () => {
   // render

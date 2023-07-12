@@ -18,13 +18,16 @@ const enteringAnimation = () => {
       { skewX: withTiming('0deg', { duration: 800 }) },
     ],
   };
+
   const initialValues = {
     transform: [
       { translateX: -SCREEN_WIDTH - (SCREEN_WIDTH - 32) / 3 },
       { skewX: '-50deg' },
     ],
   };
+
   const callback = (_finished: boolean) => {};
+
   return {
     initialValues,
     animations,
@@ -45,6 +48,7 @@ const exitingAnimation = () => {
       },
     ],
   };
+
   const initialValues = {
     opacity: 1,
     transform: [
@@ -56,7 +60,9 @@ const exitingAnimation = () => {
       },
     ],
   };
+
   const callback = (_finished: boolean) => {};
+
   return {
     initialValues,
     animations,

@@ -16,6 +16,7 @@ import { OverlayProps } from '../type';
 export const Overlay = ({ progressSkia }: OverlayProps) => {
   // state
   const { width, height } = useWindowDimensions();
+
   const transform = useComputedValue(
     () => [
       { rotate: interpolate(progressSkia.current, [0, 1], [0, Math.PI / 3]) },

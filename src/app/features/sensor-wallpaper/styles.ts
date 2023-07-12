@@ -3,6 +3,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 const { width: WIDTH_DEVICE, height: HEIGHT_DEVICE } = Dimensions.get('window');
 
 export const BUFFER_WIDTH = 75;
+
 export const BUFFER_HEIGHT = 100;
 
 export const styles = StyleSheet.create({

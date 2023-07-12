@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import {Image} from 'expo-image';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -11,9 +10,11 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 
-import {BUFFER_HEIGHT, BUFFER_WIDTH, styles} from './styles';
+import { Image } from 'expo-image';
 
-import {images} from '../../assets/images';
+import { BUFFER_HEIGHT, BUFFER_WIDTH, styles } from './styles';
+
+import { images } from '../../assets/images';
 
 export const SensorWallpaper = () => {
   // state
@@ -31,6 +32,7 @@ export const SensorWallpaper = () => {
       ),
     [],
   );
+
   const translateX = useDerivedValue(
     () =>
       interpolate(
@@ -43,18 +45,22 @@ export const SensorWallpaper = () => {
   );
 
   const wallpaperReStyle = useAnimatedStyle(() => {
-    const {yaw, pitch} = animatedSensor.sensor.value;
+    const { yaw, pitch } = animatedSensor.sensor.value;
+
     console.log('pitch', pitch * 200 + 20);
+
     console.log('yaw', yaw * 200 + 20);
+
     return {
       transform: [
-        {translateY: translateY.value},
-        {translateX: translateX.value},
+        { translateY: translateY.value },
+        { translateX: translateX.value },
       ],
       //   height: withTiming(yaw * 200 + 20, { duration: 100 }), // <- usage
       //   width: withTiming(pitch * 200 + 20, { duration: 100 }), // <- usage
     };
   }, []);
+
   // render
   return (
     <View style={[styles.root]}>

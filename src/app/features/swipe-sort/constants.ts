@@ -5,6 +5,7 @@ export const arrayToObjectZIndex = (list: Array<Image>) => {
 
   for (let i = 0; i < list.length; i++) {
     const value = list[i];
+
     object[value.id] = list.length - i;
   }
 
@@ -22,5 +23,6 @@ export const sortPosition = (positions: Position) => {
       newObject[key] = positions[key] + 1;
     }
   }
+
   return newObject;
 };

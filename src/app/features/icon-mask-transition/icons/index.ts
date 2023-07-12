@@ -5,4 +5,5 @@ export const icons = {
   status: require('./source/status.png'),
   notification: require('./source/notification.png'),
 };
+
 export type IconTypes = keyof typeof icons;

@@ -1,13 +1,5 @@
-import {
-  BlendColor,
-  Group,
-  ImageSVG,
-  Paint,
-  Skia,
-  fitbox,
-} from '@shopify/react-native-skia';
 import React from 'react';
-import {IconSKProps} from '../type';
+
 import {
   interpolateColor,
   useAnimatedReaction,
@@ -15,6 +7,10 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+
+import { BlendColor, Group, ImageSVG, Paint } from '@shopify/react-native-skia';
+
+import { IconSKProps } from '../type';
 
 export const IconSK = ({
   x,
@@ -26,10 +22,12 @@ export const IconSK = ({
 }: IconSKProps) => {
   // state
   const rotate = useSharedValue(0);
+
   const color = useDerivedValue(() =>
     interpolateColor(opacity.value, [0, 1], ['#ffffff', '#34495e']),
   );
-  const transform = useDerivedValue(() => [{rotate: rotate.value}]);
+
+  const transform = useDerivedValue(() => [{ rotate: rotate.value }]);
 
   useAnimatedReaction(
     () => ({
@@ -39,7 +37,7 @@ export const IconSK = ({
     v => {
       if (v.mounted) {
         if (v.active) {
-          rotate.value = withTiming(Math.PI * 2, {duration: 600});
+          rotate.value = withTiming(Math.PI * 2, { duration: 600 });
         } else {
           rotate.value = 0;
         }
@@ -53,7 +51,7 @@ export const IconSK = ({
   return (
     <Group
       transform={transform}
-      origin={{x: x, y: y}}
+      origin={{ x: x, y: y }}
       layer={
         <Paint>
           <BlendColor color={color} mode="srcIn" />

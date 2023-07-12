@@ -1,11 +1,13 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {GestureDetector} from 'react-native-gesture-handler';
-import Animated, {useAnimatedStyle} from 'react-native-reanimated';
-import {FILL_COLOR, RADIUS} from '../constants';
-import {DotGestureProps} from '../type';
+import { StyleSheet } from 'react-native';
 
-export const DotGesture = ({left, top, gesture}: DotGestureProps) => {
+import { GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+
+import { FILL_COLOR, RADIUS } from '../constants';
+import { DotGestureProps } from '../type';
+
+export const DotGesture = ({ left, top, gesture }: DotGestureProps) => {
   // style
   const style = useAnimatedStyle(() => {
     return {
@@ -13,6 +15,7 @@ export const DotGesture = ({left, top, gesture}: DotGestureProps) => {
       left: left.value - RADIUS,
     };
   });
+
   // render
   return (
     <GestureDetector gesture={gesture}>

@@ -1,5 +1,6 @@
-import {SkSVG} from '@shopify/react-native-skia';
-import {SharedValue} from 'react-native-reanimated';
+import { SharedValue } from 'react-native-reanimated';
+
+import { SkSVG } from '@shopify/react-native-skia';
 
 export type IconSKProps = {
   image: SkSVG | null;

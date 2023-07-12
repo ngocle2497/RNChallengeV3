@@ -8,7 +8,8 @@ import {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import {Group, Image, Rect, rect} from '@shopify/react-native-skia';
+import { Group, Image, Rect, rect } from '@shopify/react-native-skia';
+
 import {
   INPUT_OPACITY,
   OUTPUT_OPACITY,
@@ -16,11 +17,12 @@ import {
   SCREEN_WIDTH,
   sharedTiming,
 } from '../constant';
-import {OriginImageProps} from '../type';
+import { OriginImageProps } from '../type';
 
-export const OriginImage = ({image, progress}: OriginImageProps) => {
+export const OriginImage = ({ image, progress }: OriginImageProps) => {
   // state
   const progressBackdrop = useSharedValue(0);
+
   const opacityBackdrop = useDerivedValue(() =>
     interpolate(progressBackdrop.value, INPUT_OPACITY, OUTPUT_OPACITY),
   );

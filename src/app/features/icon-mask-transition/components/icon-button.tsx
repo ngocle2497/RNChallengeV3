@@ -1,13 +1,13 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import {Image} from 'expo-image';
+import { Image } from 'expo-image';
 
-import {icons} from '../icons';
-import {styles} from '../styles';
-import {IconButtonProps} from '../type';
+import { icons } from '../icons';
+import { styles } from '../styles';
+import { IconButtonProps } from '../type';
 
-export const IconButton = ({icon, onPress}: IconButtonProps) => {
+export const IconButton = ({ icon, onPress }: IconButtonProps) => {
   // render
   return (
     <TouchableOpacity onPress={onPress}>

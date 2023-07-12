@@ -1,5 +1,10 @@
 import React from 'react';
-import {FlatList, FlatListProps, ListRenderItemInfo, View} from 'react-native';
+import {
+  FlatList,
+  FlatListProps,
+  ListRenderItemInfo,
+  View,
+} from 'react-native';
 
 import Animated, {
   useAnimatedScrollHandler,
@@ -7,13 +12,14 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import {Canvas, useCanvasRef, useImage} from '@shopify/react-native-skia';
+import { Canvas, useCanvasRef, useImage } from '@shopify/react-native-skia';
 
-import {images} from '../../assets/images';
-import {Background} from './components/background';
-import {FilterImage} from './components/filter-image';
-import {FILTER_ARRAY, SPACER_LIST} from './constants';
-import {styles} from './styles';
+import { Background } from './components/background';
+import { FilterImage } from './components/filter-image';
+import { FILTER_ARRAY, SPACER_LIST } from './constants';
+import { styles } from './styles';
+
+import { images } from '../../assets/images';
 
 const AnimatedFlatList =
   Animated.createAnimatedComponent<FlatListProps<string>>(FlatList);
@@ -23,16 +29,19 @@ export const ColorFilter = () => {
   const image = useImage(images.cat);
 
   const scrollX = useSharedValue(0);
+
   const scrollXSkia = useDerivedValue(() => scrollX.value + SPACER_LIST);
+
   const canvas = useCanvasRef();
+
   // func
   const onScroll = useAnimatedScrollHandler({
-    onScroll: ({contentOffset: {x}}) => {
+    onScroll: ({ contentOffset: { x } }) => {
       scrollX.value = x;
     },
   });
 
-  const renderItem = ({index, item}: ListRenderItemInfo<string>) => {
+  const renderItem = ({ index, item }: ListRenderItemInfo<string>) => {
     return (
       <FilterImage image={image!} index={index} item={item} scrollX={scrollX} />
     );

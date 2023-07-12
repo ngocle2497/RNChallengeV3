@@ -1,16 +1,16 @@
 import React from 'react';
-import {useWindowDimensions} from 'react-native';
+import { useWindowDimensions } from 'react-native';
+
+import { interpolate, useDerivedValue } from 'react-native-reanimated';
 
 import {
   ColorMatrix,
   Extrapolate,
   Image,
-  Paint,
-  useComputedValue,
   useImage,
 } from '@shopify/react-native-skia';
 
-import {images} from '../../../assets/images';
+import { images } from '../../../assets/images';
 import {
   A1_OUTPUT_RANGE,
   A2_OUTPUT_RANGE,
@@ -34,42 +34,59 @@ import {
   R4_OUTPUT_RANGE,
   R5_OUTPUT_RANGE,
 } from '../constants';
-import {BackgroundProps} from '../type';
-import {interpolate, useDerivedValue} from 'react-native-reanimated';
+import { BackgroundProps } from '../type';
 
 const skiaInterpolate = (x: number, outputRange: number[]) => {
   'worklet';
+
   return interpolate(x, INPUT_RANGE, outputRange, Extrapolate.CLAMP);
 };
 
-export const Background = ({scrollX}: BackgroundProps) => {
+export const Background = ({ scrollX }: BackgroundProps) => {
   // state
   const image = useImage(images.cat);
 
-  const {width, height} = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+
   const matrix = useDerivedValue(() => {
     const R1 = skiaInterpolate(scrollX.value, R1_OUTPUT_RANGE);
+
     const R2 = skiaInterpolate(scrollX.value, R2_OUTPUT_RANGE);
+
     const R3 = skiaInterpolate(scrollX.value, R3_OUTPUT_RANGE);
+
     const R4 = skiaInterpolate(scrollX.value, R4_OUTPUT_RANGE);
+
     const R5 = skiaInterpolate(scrollX.value, R5_OUTPUT_RANGE);
 
     const G1 = skiaInterpolate(scrollX.value, G1_OUTPUT_RANGE);
+
     const G2 = skiaInterpolate(scrollX.value, G2_OUTPUT_RANGE);
+
     const G3 = skiaInterpolate(scrollX.value, G3_OUTPUT_RANGE);
+
     const G4 = skiaInterpolate(scrollX.value, G4_OUTPUT_RANGE);
+
     const G5 = skiaInterpolate(scrollX.value, G5_OUTPUT_RANGE);
 
     const B1 = skiaInterpolate(scrollX.value, B1_OUTPUT_RANGE);
+
     const B2 = skiaInterpolate(scrollX.value, B2_OUTPUT_RANGE);
+
     const B3 = skiaInterpolate(scrollX.value, B3_OUTPUT_RANGE);
+
     const B4 = skiaInterpolate(scrollX.value, B4_OUTPUT_RANGE);
+
     const B5 = skiaInterpolate(scrollX.value, B5_OUTPUT_RANGE);
 
     const A1 = skiaInterpolate(scrollX.value, A1_OUTPUT_RANGE);
+
     const A2 = skiaInterpolate(scrollX.value, A2_OUTPUT_RANGE);
+
     const A3 = skiaInterpolate(scrollX.value, A3_OUTPUT_RANGE);
+
     const A4 = skiaInterpolate(scrollX.value, A4_OUTPUT_RANGE);
+
     const A5 = skiaInterpolate(scrollX.value, A5_OUTPUT_RANGE);
 
     return [

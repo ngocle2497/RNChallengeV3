@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {CanvasFunction} from './canvas-func';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { CanvasFunction } from './canvas-func';
 
 export const GestureFunction = () => {
   // state
@@ -11,16 +12,22 @@ export const GestureFunction = () => {
     switch (index) {
       case 0:
         setTextPressed('Back');
+
         break;
       case 1:
         setTextPressed('Refresh');
+
         break;
       case 2:
         setTextPressed('Close');
+
+        break;
+
       default:
         break;
     }
   };
+
   // render
   return (
     <View style={styles.root}>

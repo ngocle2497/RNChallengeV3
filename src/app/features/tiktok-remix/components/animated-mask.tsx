@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, useImperativeHandle} from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle } from 'react';
 
 import {
   Easing,
@@ -8,14 +8,15 @@ import {
   withSequence,
 } from 'react-native-reanimated';
 
-import {Group, Rect} from '@shopify/react-native-skia';
+import { Group, Rect } from '@shopify/react-native-skia';
+
 import {
   ORIGIN_HEIGHT,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
   sharedTiming,
 } from '../constant';
-import {TiktokRemixProps} from '../type';
+import { TiktokRemixProps } from '../type';
 
 const deg2rad = (deg: number) => {
   'worklet';
@@ -24,51 +25,61 @@ const deg2rad = (deg: number) => {
 };
 
 export const AnimatedMask = forwardRef(
-  ({scaleMask, progress}: TiktokRemixProps, ref) => {
+  ({ scaleMask, progress }: TiktokRemixProps, ref) => {
     // state
     const rotate = useSharedValue(0);
+
     const translateX = useSharedValue(0);
+
     const translateY = useSharedValue(0);
+
     const scaleX = useSharedValue(1);
 
     // func
     const run = useCallback(() => {
       scaleX.value = 1;
+
       rotate.value = 0;
+
       translateX.value = 0;
+
       translateY.value = 0;
-      rotate.value = withDelay(100, sharedTiming(-90, {duration: 1500}));
+
+      rotate.value = withDelay(100, sharedTiming(-90, { duration: 1500 }));
+
       scaleX.value = withDelay(
         100,
-        sharedTiming(ORIGIN_HEIGHT / SCREEN_WIDTH, {duration: 700}, f => {
+        sharedTiming(ORIGIN_HEIGHT / SCREEN_WIDTH, { duration: 700 }, f => {
           'worklet';
           if (f) {
             scaleMask.value = withSequence(
-              sharedTiming(1.25, {duration: 600}),
-              sharedTiming(1.1, {duration: 1200}),
-              sharedTiming(1.25, {duration: 400}),
-              sharedTiming(1.2, {duration: 800}),
-              withDelay(500, sharedTiming(1.15, {duration: 600})),
-              sharedTiming(1.15, {duration: 600}),
-              withDelay(300, sharedTiming(1.2, {duration: 800})),
-              sharedTiming(1.15, {duration: 400}),
-              withDelay(100, sharedTiming(1.2, {duration: 600})),
-              sharedTiming(1.3, {duration: 600}),
-              sharedTiming(1.05, {duration: 500}),
-              sharedTiming(1.1, {duration: 200}),
-              sharedTiming(1.3, {duration: 500}),
+              sharedTiming(1.25, { duration: 600 }),
+              sharedTiming(1.1, { duration: 1200 }),
+              sharedTiming(1.25, { duration: 400 }),
+              sharedTiming(1.2, { duration: 800 }),
+              withDelay(500, sharedTiming(1.15, { duration: 600 })),
+              sharedTiming(1.15, { duration: 600 }),
+              withDelay(300, sharedTiming(1.2, { duration: 800 })),
+              sharedTiming(1.15, { duration: 400 }),
+              withDelay(100, sharedTiming(1.2, { duration: 600 })),
+              sharedTiming(1.3, { duration: 600 }),
+              sharedTiming(1.05, { duration: 500 }),
+              sharedTiming(1.1, { duration: 200 }),
+              sharedTiming(1.3, { duration: 500 }),
             );
+
             translateX.value = withSequence(
-              sharedTiming(250, {duration: 600}),
-              sharedTiming(0, {duration: 1200}),
-              sharedTiming(-250, {duration: 400}),
-              sharedTiming(0, {duration: 800}, f1 => {
+              sharedTiming(250, { duration: 600 }),
+              sharedTiming(0, { duration: 1200 }),
+              sharedTiming(-250, { duration: 400 }),
+              sharedTiming(0, { duration: 800 }, f1 => {
                 'worklet';
                 if (f1) {
                   rotate.value = withDelay(
                     400,
-                    sharedTiming(0, {duration: 800}),
+                    sharedTiming(0, { duration: 800 }),
                   );
+
                   scaleX.value = withDelay(
                     600,
                     withSequence(
@@ -98,7 +109,7 @@ export const AnimatedMask = forwardRef(
                                       if (f5) {
                                         translateX.value = sharedTiming(
                                           250,
-                                          {duration: 1200},
+                                          { duration: 1200 },
                                           f6 => {
                                             'worklet';
                                             if (f6) {
@@ -121,6 +132,7 @@ export const AnimatedMask = forwardRef(
                                                         sharedTiming(0, {
                                                           duration: 200,
                                                         });
+
                                                       progress.value =
                                                         withDelay(
                                                           100,
@@ -156,20 +168,20 @@ export const AnimatedMask = forwardRef(
 
     // skProps
     const transform = useDerivedValue(() => [
-      {rotate: deg2rad(rotate.value)},
-      {translateX: translateX.value},
-      {translateY: translateY.value},
-      {scaleX: scaleX.value},
+      { rotate: deg2rad(rotate.value) },
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scaleX: scaleX.value },
     ]);
 
     // effect
-    useImperativeHandle(ref, () => ({run}), [run]);
+    useImperativeHandle(ref, () => ({ run }), [run]);
 
     // render
     return (
       <Group
         transform={transform}
-        origin={{x: SCREEN_WIDTH / 2, y: SCREEN_HEIGHT / 2}}>
+        origin={{ x: SCREEN_WIDTH / 2, y: SCREEN_HEIGHT / 2 }}>
         <Rect
           x={0}
           y={-SCREEN_HEIGHT * 0.5}

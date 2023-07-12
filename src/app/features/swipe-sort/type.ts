@@ -1,4 +1,5 @@
 import Animated from 'react-native-reanimated';
+
 export type Image = {
   id: number;
   url: string;

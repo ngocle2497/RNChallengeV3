@@ -1,16 +1,19 @@
-import {RoundedRect} from '@shopify/react-native-skia';
 import React from 'react';
+
 import {
   interpolate,
   interpolateColor,
   useDerivedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {sharedClamp} from '../../../constants';
-import {BAR_WIDTH, CANVAS_HEIGHT, MAX_BAR_HEIGHT} from '../constant';
-import {BarProps} from '../type';
 
-export const Bar = ({index, data}: BarProps) => {
+import { RoundedRect } from '@shopify/react-native-skia';
+
+import { sharedClamp } from '../../../constants';
+import { BAR_WIDTH, CANVAS_HEIGHT, MAX_BAR_HEIGHT } from '../constant';
+import { BarProps } from '../type';
+
+export const Bar = ({ index, data }: BarProps) => {
   // state
   const height = useDerivedValue(() =>
     withTiming(sharedClamp(data.value[index], 1, MAX_BAR_HEIGHT), {

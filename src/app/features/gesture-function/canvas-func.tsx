@@ -1,14 +1,9 @@
-import {
-  Canvas,
-  Group,
-  Oval,
-  Rect,
-  useImage,
-  useSVG,
-} from '@shopify/react-native-skia';
-import React, {useMemo, useState} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/order */
+import React, { useMemo } from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
   interpolate,
@@ -20,8 +15,10 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import {sharedClamp} from '../../constants';
-import {IconSK} from './components/icon-sk';
+
+import { Canvas, Group, Oval, Rect, useSVG } from '@shopify/react-native-skia';
+
+import { IconSK } from './components/icon-sk';
 import {
   DISTANCE_CHANGE,
   G_HEIGHT,
@@ -32,31 +29,51 @@ import {
   POSITION_X,
   screenWidth,
 } from './constants';
-import {CanvasFunctionProps} from './type';
+import { CanvasFunctionProps } from './type';
+
+import { sharedClamp } from '../../constants';
 
 const backIcon = require('./icons/arrow-left.svg');
+
 const refresh = require('./icons/refresh-cw.svg');
+
 const close = require('./icons/x.svg');
 
-export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
+export const CanvasFunction = ({
+  children,
+  onExecFunc,
+}: CanvasFunctionProps) => {
   // state
   const xImage = useSVG(close)!;
+
   const backImage = useSVG(backIcon)!;
+
   const refreshImage = useSVG(refresh)!;
 
   const currentIndex = useSharedValue(1);
+
   const widthOval = useSharedValue(OVAL_BASE_SIZE);
+
   const xOval = useSharedValue(screenWidth / 2 - OVAL_RADIUS);
+
   const outputRangeX = useSharedValue(OUTPUT_RANGE_X[currentIndex.value]);
+
   const outputRangeWidth = useSharedValue(
     OUTPUT_RANGE_WIDTH[currentIndex.value],
   );
+
   const gScaleOval = useSharedValue(0.2);
+
   const gTranslateYOval = useSharedValue(-100);
+
   const gTranslateX = useSharedValue(0);
+
   const gTranslateY = useSharedValue(-G_HEIGHT);
+
   const offsetX = useSharedValue(0);
+
   const isGTranslateRunning = useSharedValue(false);
+
   const canvasHeight = useSharedValue(0);
 
   const iconOpacity = useSharedValue(0);
@@ -74,13 +91,14 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
         }
       })
 
-      .onChange(({changeX, changeY}) => {
+      .onChange(({ changeX, changeY }) => {
         if (gTranslateY.value < 0) {
           gTranslateY.value = sharedClamp(
             gTranslateY.value + changeY * 2.5,
             -G_HEIGHT,
             0,
           );
+
           console.log(gTranslateY.value);
 
           canvasHeight.value = interpolate(
@@ -89,18 +107,21 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
             [G_HEIGHT, 0],
             Extrapolate.CLAMP,
           );
+
           gScaleOval.value = interpolate(
             gTranslateY.value,
             [-G_HEIGHT, -G_HEIGHT / 2, 0],
             [0.01, 0.1, 1],
             // Extrapolate.CLAMP,
           );
+
           gTranslateYOval.value = interpolate(
             gTranslateY.value,
             [0, -G_HEIGHT / 0.5],
             [0, -100],
             Extrapolate.CLAMP,
           );
+
           iconOpacity.value = interpolate(
             gTranslateY.value,
             [0, -G_HEIGHT],
@@ -110,20 +131,28 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
         }
 
         // wait for translateY to be 0 or animation to be finished
-        if (isGTranslateRunning.value || gTranslateY.value < 0) return;
+        if (isGTranslateRunning.value || gTranslateY.value < 0) {
+          return;
+        }
 
         offsetX.value += changeX;
+
         if (offsetX.value > DISTANCE_CHANGE) {
           offsetX.value = 0;
+
           currentIndex.value = sharedClamp(currentIndex.value + 1, 0, 2);
 
           isGTranslateRunning.value = true;
         }
+
         if (offsetX.value < -DISTANCE_CHANGE) {
           offsetX.value = 0;
+
           currentIndex.value = sharedClamp(currentIndex.value - 1, 0, 2);
+
           isGTranslateRunning.value = true;
         }
+
         if (isGTranslateRunning.value) {
           widthOval.value = withTiming(
             OVAL_BASE_SIZE,
@@ -136,13 +165,18 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
               }
             },
           );
+
           xOval.value = withTiming(screenWidth / 2 - OVAL_RADIUS, {
             duration: 200,
           });
+
           outputRangeX.value = OUTPUT_RANGE_X[currentIndex.value];
+
           outputRangeWidth.value = OUTPUT_RANGE_WIDTH[currentIndex.value];
+
           return;
         }
+
         xOval.value = interpolate(
           offsetX.value,
           [-DISTANCE_CHANGE, 0, DISTANCE_CHANGE],
@@ -162,21 +196,30 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
         if (gTranslateY.value === 0) {
           runOnJS(onExecFunc)(currentIndex.value);
         }
-        canvasHeight.value = withTiming(0, {duration: 200});
+
+        canvasHeight.value = withTiming(0, { duration: 200 });
+
         offsetX.value = 0;
+
         xOval.value = withTiming(screenWidth / 2 - OVAL_RADIUS, {
           duration: 200,
         });
-        widthOval.value = withTiming(OVAL_BASE_SIZE, {duration: 200});
-        gTranslateY.value = withTiming(-G_HEIGHT, {duration: 200}, f => {
+
+        widthOval.value = withTiming(OVAL_BASE_SIZE, { duration: 200 });
+
+        gTranslateY.value = withTiming(-G_HEIGHT, { duration: 200 }, f => {
           if (f) {
             currentIndex.value = 1;
+
             isGTranslateRunning.value = false;
+
             outputRangeX.value = OUTPUT_RANGE_X[currentIndex.value];
+
             outputRangeWidth.value = OUTPUT_RANGE_WIDTH[currentIndex.value];
           }
         });
-        gTranslateX.value = withDelay(200, withTiming(0, {duration: 200}));
+
+        gTranslateX.value = withDelay(200, withTiming(0, { duration: 200 }));
       });
   }, [onExecFunc]);
 
@@ -198,9 +241,9 @@ export const CanvasFunction = ({children, onExecFunc}: CanvasFunctionProps) => {
   ]);
 
   const gTransformOval = useDerivedValue(() => [
-    {translateX: gTranslateX.value},
-    {translateY: gTranslateYOval.value},
-    {scale: gScaleOval.value},
+    { translateX: gTranslateX.value },
+    { translateY: gTranslateYOval.value },
+    { scale: gScaleOval.value },
   ]);
 
   const wrapCanvasStyle = useAnimatedStyle(() => ({

@@ -1,11 +1,15 @@
+import { useMemo } from 'react';
+
+import { Gesture } from 'react-native-gesture-handler';
+import { SharedValue, useSharedValue } from 'react-native-reanimated';
+
 import gaussian from 'gaussian';
-import {useMemo} from 'react';
-import {Gesture} from 'react-native-gesture-handler';
-import {SharedValue, useSharedValue} from 'react-native-reanimated';
-import {DataChart} from './type';
+
+import { DataChart } from './type';
 
 function weightedRandom(mean: number, variance: number): number {
   const distribution = gaussian(mean, variance);
+
   // Take a random sample using inverse transform sampling method.
   return distribution.ppf(Math.random());
 }
@@ -21,7 +25,9 @@ export const randomDataChart = (): Array<DataChart> => {
 
 export function usePanGesture(onInterpolating: SharedValue<boolean>) {
   const x = useSharedValue(0);
+
   const y = useSharedValue(0);
+
   const isPanGestureActive = useSharedValue(false);
 
   const panGesture = useMemo(
@@ -30,6 +36,7 @@ export function usePanGesture(onInterpolating: SharedValue<boolean>) {
         .onChange(e => {
           if (!onInterpolating.value) {
             x.value = e.x;
+
             y.value = e.y;
           }
         })

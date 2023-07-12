@@ -1,5 +1,5 @@
-import {GestureType} from 'react-native-gesture-handler';
-import {SharedValue} from 'react-native-reanimated';
+import { GestureType } from 'react-native-gesture-handler';
+import { SharedValue } from 'react-native-reanimated';
 
 export type DotGestureProps = {
   left: SharedValue<number>;

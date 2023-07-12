@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {createRef} from 'react';
+import { createRef } from 'react';
 
-import {CommonActions, NavigationContainerRef} from '@react-navigation/native';
+import {
+  CommonActions,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 
-import {RootStackParamList} from './screen-type';
+import { RootStackParamList } from './screen-type';
 
 export const navigationRef =
   createRef<NavigationContainerRef<RootStackParamList>>();

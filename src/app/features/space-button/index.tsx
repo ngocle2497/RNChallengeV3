@@ -1,7 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
-import {Image} from 'expo-image';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -10,13 +9,16 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import {LightRay} from './components/light-ray';
-import {URL_SPACE} from './constant';
-import {styles} from './styles';
+import { Image } from 'expo-image';
+
+import { LightRay } from './components/light-ray';
+import { URL_SPACE } from './constant';
+import { styles } from './styles';
 
 export const SpaceButton = () => {
   // state
   const [going, setGoing] = useState<boolean>(false);
+
   const scale = useSharedValue(1);
 
   // func
@@ -25,7 +27,7 @@ export const SpaceButton = () => {
   };
 
   const bgStyle = useAnimatedStyle(() => ({
-    transform: [{scale: scale.value}],
+    transform: [{ scale: scale.value }],
   }));
 
   const renderItem = useCallback((_: any, index: number) => {
@@ -36,7 +38,7 @@ export const SpaceButton = () => {
   useEffect(() => {
     if (going) {
       scale.value = withRepeat(
-        withTiming(3, {duration: 200 * 1000, easing: Easing.linear}),
+        withTiming(3, { duration: 200 * 1000, easing: Easing.linear }),
         -1,
         true,
       );
@@ -51,7 +53,7 @@ export const SpaceButton = () => {
       <Animated.View style={[StyleSheet.absoluteFillObject, bgStyle]}>
         <Image
           pointerEvents="none"
-          source={{uri: URL_SPACE}}
+          source={{ uri: URL_SPACE }}
           contentFit="cover"
           style={[StyleSheet.absoluteFillObject]}
         />
@@ -60,7 +62,7 @@ export const SpaceButton = () => {
         {going ? Array(50).fill(0).map(renderItem) : null}
         <TouchableWithoutFeedback onPress={handleToggleGoing}>
           <View style={[styles.button]}>
-            <Text style={{color: '#ffffff'}}>{going ? 'Stop' : 'Start'}</Text>
+            <Text style={{ color: '#ffffff' }}>{going ? 'Stop' : 'Start'}</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>

@@ -20,6 +20,7 @@ export const COLORS = [
   '#5758BB',
   '#6F1E51',
 ];
+
 export const getRandomColor = () => {
   return COLORS[Math.floor(Math.random() * (COLORS.length - 1))];
 };

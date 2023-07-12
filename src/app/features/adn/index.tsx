@@ -18,7 +18,9 @@ import { styles } from './styles';
 export const ADN = () => {
   // state
   const progress = useSharedValue(0);
+
   const opacity = useSharedValue(0);
+
   const rotate = useDerivedValue(() =>
     interpolate(progress.value, [0, 1], [0, 360]),
   );
@@ -44,6 +46,7 @@ export const ADN = () => {
         false,
       ),
     );
+
     setTimeout(() => {
       opacity.value = 1;
     }, 500);
