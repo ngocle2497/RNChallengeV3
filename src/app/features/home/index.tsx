@@ -128,6 +128,7 @@ export const Home = () => {
           onPress={handleNavigate(APP_SCREEN.SOUND_WAVE)}
         />
       ) : null}
+      <ItemFunction text="Switch" onPress={handleNavigate(APP_SCREEN.SWITCH)} />
       <View style={{ height: bottom + 10 }} />
     </ScrollView>
   );

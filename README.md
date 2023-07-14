@@ -95,3 +95,6 @@
 ## Crop Image
 
 <image src="./preview/crop_image.gif"/>
+## Switch
+
+<image src="./preview/switch.gif"/>

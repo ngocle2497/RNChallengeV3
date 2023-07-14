@@ -38,6 +38,7 @@ import { SensorWallpaper } from '../features/sensor-wallpaper';
 import { SoundWave } from '../features/sound-wave';
 import { SpaceButton } from '../features/space-button';
 import { SwipeSort } from '../features/swipe-sort';
+import { Switch } from '../features/switch';
 import { TelegramLock } from '../features/telegram-lock';
 import { TiktokRemix } from '../features/tiktok-remix';
 
@@ -70,7 +71,7 @@ export const RootNavigation = () => {
         backgroundColor="transparent"
       />
       <RootStack.Navigator
-        // initialRouteName={APP_SCREEN.SOUND_WAVE}
+        // initialRouteName={APP_SCREEN.SWITCH}
         screenOptions={{
           ...TransitionPresets.SlideFromRightIOS,
           headerTitleAlign: 'center',
@@ -221,6 +222,14 @@ export const RootNavigation = () => {
           }}
           name={APP_SCREEN.SOUND_WAVE}
           component={SoundWave}
+        />
+        <RootStack.Screen
+          options={{
+            title: 'Switch',
+            headerShown: false,
+          }}
+          name={APP_SCREEN.SWITCH}
+          component={Switch}
         />
       </RootStack.Navigator>
     </NavigationContainer>

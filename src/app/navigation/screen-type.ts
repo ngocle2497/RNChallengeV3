@@ -30,6 +30,7 @@ export enum APP_SCREEN {
   CROP_IMAGE = 'CROP_IMAGE',
   CROP_IMAGE_RESULT = 'CROP_IMAGE_RESULT',
   SOUND_WAVE = 'SOUND_WAVE',
+  SWITCH = 'SWITCH',
 }
 
 export type RootStackParamList = {
@@ -65,6 +66,7 @@ export type RootStackParamList = {
   };
   [APP_SCREEN.CROP_IMAGE]: undefined;
   [APP_SCREEN.SOUND_WAVE]: undefined;
+  [APP_SCREEN.SWITCH]: undefined;
 };
 
 export type StackScreenProps<T extends keyof RootStackParamList> =
